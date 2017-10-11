@@ -45,7 +45,41 @@ Marker.findById = (id) => {
     `, [id]);
 };
 
+//this is the function that selects one park by user
+Marker.createByUser = parks => {
+  parks.user_id = Number.parseInt(parks.user_id, 10)
+  console.log(parks.user_id)
+  return db.one(
+    `
+    INSERT INTO parks
+    (park_name, address, city, state, coordinates, image, website, description, user_id)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+    RETURNING *
+    `, [parks.park_name, parks.address, parks.city, parks.state, parks.coordinates, parks.image, parks.website, parks. description, parks.user_id]
+    );
+};
 
+//this is the function that selects one park by user
+Marker.create = parks => {
+  return db.one(
+    `
+    INSERT INTO parks
+    (park_name, address, city, state, coordinates, image, website, description)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+    RETURNING *
+    `, [parks.park_name, parks.address, parks.city, parks.state, parks.coordinates, parks.image, parks.website, parks.description]
+    );
+};
+
+//this is the function deletes a single item in the database
+Gram.delete = (id) => {
+  return db.none(`
+    DELETE FROM parks
+    WHERE id = $1
+    `, [id]);
+}
+
+module.exports = Marker;
 
 // 3 TABLE SET UP
 // //this is the function that selects all the parks for a user
