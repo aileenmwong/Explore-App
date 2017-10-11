@@ -21,33 +21,29 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(methodOverride('_method'));
 
 //render index page
-// app.get('/', function(req, res){
-//   res.render('#')
-// });
-
-app.get('/', function(req,res){
-  res.send('HELLOoOOOoOOoOOOooO, WORLD! <h1>This is ROOT route</h1>');
+app.get('/', function(req, res){
+  res.render('explore-home')
 });
 
 app.use('*', (req, res) => {
-    // send a response with status 404
-    res.status(404).send(err);
+  // send a response with status 404
+  res.status(404).send(err);
 });
 
-//require the router
-// const gramRoutes = require('./routes/gram-routes');
-// app.use('/grams', gramRoutes);
+// require the router
+const markerRoutes = require('./routes/marker-routes');
+app.use('/explore', markerRoutes);
 
 // const apiRoutes = require('./routes/api-routes')
 // app.use('/apiroute', apiRoutes);
 
 //set the views so ejs can be rendered
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
-// require public folder so anything placed in public folder can be used
-// app.use(express.static('public'));
-// app.use(express.static(__dirname + "/public"));
+//require public folder so anything placed in public folder can be used
+app.use(express.static('public'));
+app.use(express.static(__dirname + "/public"));
 
 
 //assign port

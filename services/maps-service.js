@@ -6,8 +6,7 @@ require('dotenv').config();
 //declare a function of getSearchResults with req, res, and next as parameters
 function getMapResults(req, res, next) {
   //declare variables for search terms in the API key
-  const CLIENT_ID_MAP = process.env.SUPER_SECRET_CLIENT_ID_MAP;
-  const CLIENT_SECRET_MAP = process.env.SUPER_SECRET_CLIENT_SECRET_MAP;
+  const CLIENT_ID_MAP = process.env.SUPER_SECRET_MAP;
 
 //   //fetch the api
 //   fetch(`https://api.foursquare.com/v2/venues/search?near=${req.body.locationSearch}+&query=${req.body.food}+&limit=10&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=20170831`)
