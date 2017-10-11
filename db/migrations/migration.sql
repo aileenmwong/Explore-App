@@ -14,13 +14,8 @@ CREATE TABLE IF NOT EXISTS parks (
   city VARCHAR(255),
   state VARCHAR(255),
   coordinates VARCHAR(255),
-  image VARCHAR(255),
-  website VARCHAR(255),
-  description VARCHAR(255),
-)
-
-CREATE TABLE IF NOT EXISTS user_parks (
-  id BIGSERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES users,
-  park_id INTEGER REFERENCES parks
-)
+  image VARCHAR(1000),
+  website VARCHAR(1000),
+  description VARCHAR(1000),
+  user_id INTEGER REFERENCES users
+);
