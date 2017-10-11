@@ -25,9 +25,14 @@ app.get('/', function(req, res){
   res.render('explore-home')
 });
 
-app.use('*', (req, res) => {
-  // send a response with status 404
-  res.status(404).send(err);
+//render search page
+app.get('/search', function(req, res){
+  res.render('explore-search')
+});
+
+//render map page
+app.get('/map', function(req, res){
+  res.render('explore-map')
 });
 
 // require the router

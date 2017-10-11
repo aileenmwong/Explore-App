@@ -6,7 +6,7 @@ const markerController = {};
 markerController.index = (req, res) => {
   Marker.findAll()
     .then(markers => {
-      res.render('#', {
+      res.render('./explore-map', {
         data: markers,
       })
     }).catch(err => {
@@ -19,7 +19,7 @@ markerController.index = (req, res) => {
 markerController.show = (req, res) => {
   Marker.findById(req.params.id)
     .then(marker => {
-      res.render('#', {
+      res.render('./explore-single', {
         data: marker,
       });
     }).catch(err => {
@@ -42,7 +42,7 @@ markerController.create = (req, res) => {
       user_id: req.body.user_id
     })
     .then (grams => {
-      res.redirect('/');
+      res.redirect('/map');
       })
     .catch (err => {
       console.log(err);
@@ -54,7 +54,7 @@ markerController.create = (req, res) => {
 markerController.search = (req, res) => {
   Marker.search
     .then(grams => {
-    res.render('#', {
+    res.render('./explore-search', {
   })
   .catch(err => {
     res.status(500).json(err);
@@ -66,7 +66,7 @@ markerController.search = (req, res) => {
 markerController.delete = (req, res) => {
   Marker.delete(req.params.id)
   .then(() => {
-    res.redirect('#');
+    res.redirect('/map');
     })
   .catch(err => {
     console.log(err);

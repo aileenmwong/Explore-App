@@ -9,6 +9,11 @@ const markerController = require('../controllers/marker-controller');
 const mapService = require('../services/maps-service');
 const npsService = require('../services/nps-service');
 
+//render search page
+markerRoutes.get('/search', (req, res) => {
+  res.render('explore-search')
+});
+
 // get the search page from the controller
 markerRoutes.get('/search', markerController.search);
 

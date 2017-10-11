@@ -24,17 +24,17 @@ Marker.findAll = () => {
     `);
 };
 
-//this is the function that selects one park by user
-Marker.findByIdByUser = (users.id, parks.id) => {
-  return db.oneOrNone(
-    `
-    SELECT * FROM parks
-    INNER JOIN users
-    ON user_id = users.id
-    WHERE users.id = $1
-    AND parks.id = $2
-    `, [users.parks.id]);
-};
+// //this is the function that selects one park by user
+// Marker.findByIdByUser = (users.id, parks.id) => {
+//   return db.oneOrNone(
+//     `
+//     SELECT * FROM parks
+//     INNER JOIN users
+//     ON user_id = users.id
+//     WHERE users.id = $1
+//     AND parks.id = $2
+//     `, [users.parks.id]);
+// };
 
 //this is the function that selects one park
 Marker.findById = (id) => {
@@ -74,7 +74,7 @@ Marker.create = parks => {
 };
 
 //this is the function deletes a single item in the database
-Gram.delete = (id) => {
+Marker.delete = (id) => {
   return db.none(`
     DELETE FROM parks
     WHERE id = $1
