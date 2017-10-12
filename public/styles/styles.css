@@ -1,10 +1,36 @@
-#map {
-  height: 400px;
-  width: 100%;
-  border: 1px solid black;
+/*font-family: 'Questrial', sans-serif;
+font-family: 'Pragati Narrow', sans-serif;*/
+
+/*NAV BAR*/
+
+#navBar {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 10px;
+  background-color: white;
 }
 
-#searchMap {
+.navLinks {
+  text-decoration: none;
+  font-family: 'Quicksand', sans-serif;
+  display: inline;
+  background-color: rgb(88,193,185);
+  padding: 5px 30px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  color: white;
+}
+
+.navLinks:hover {
+  background-color: rgb(241,89,42);
+}
+
+#map {
   height: 400px;
   width: 100%;
   border: 1px solid black;
@@ -18,8 +44,120 @@
 
 /*SEARCH PAGE*/
 
+#searchResultsWrapper {
+  display: flex;
+}
+
+
+#searchMap {
+  height: 400px;
+  width: 48%;
+  margin: 2%;
+  border: 1px solid black;
+}
+
+#searchResults {
+  width: 48%;
+  margin: 2%;
+}
+
+.resultCont {
+  border: 1px solid black;
+  list-style: none;
+}
+
+.resultName {
+font-family: 'Questrial', sans-serif;
+}
+
+.resultAddress {
+font-family: 'Pragati Narrow', sans-serif;
+}
+
+.resultCity {
+font-family: 'Pragati Narrow', sans-serif;
+}
+
+.resultState {
+font-family: 'Pragati Narrow', sans-serif;
+}
+
+.resultCoords {
+font-family: 'Pragati Narrow', sans-serif;
+}
+
+.resultImageCont {
+  width: 250px;
+  height: 250px;
+  border: 1px solid black;
+  object-fit: contain;
+}
+
+.resultImage {
+  height: auto;
+  width: auto;
+  max-height: 250px;
+  max-width: 100%;
+  object-fit: scale-down;
+  overflow: hidden;
+}
+
+.resultDescription {
+font-family: 'Pragati Narrow', sans-serif;
+}
+
+.resultWebsite {
+font-family: 'Pragati Narrow', sans-serif;
+}
+
+.websiteButton {
+font-family: 'Pragati Narrow', sans-serif;
+}
+
+#searchRsults {
+font-family: 'Pragati Narrow', sans-serif;
+}
+
 
 /*HOME PAGE*/
 #backgroundHome {
   width: 100%;
+}
+
+/*MAP PAGE*/
+.exploreParkImage{
+  height: auto;
+  width: auto;
+  max-height: 250px;
+  max-width: 20%;
+  object-fit: scale-down;
+  overflow: hidden;
+
+}
+.exploreParkName {
+  font-family: 'Questrial', sans-serif;
+}
+.exploreParkAddress {
+  font-family: 'Pragati Narrow', sans-serif;
+
+}
+.exploreParkCity {
+  font-family: 'Pragati Narrow', sans-serif;
+
+}
+.exploreParkState {
+  font-family: 'Pragati Narrow', sans-serif;
+
+}
+.exploreParkCoordinates {
+  font-family: 'Pragati Narrow', sans-serif;
+
+}
+.exploreParkWebsite {
+  font-family: 'Pragati Narrow', sans-serif;
+
+}
+.exploreParkDescription {
+  font-family: 'Pragati Narrow', sans-serif;
+
 }

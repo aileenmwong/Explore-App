@@ -66,23 +66,25 @@ let description;
     parkAddress.appendTo($container);
 
     let parkCity = $('<li>').attr('class', 'resultCity').html(city);
-    //append the phone to the container
+    //append the city to the container
     parkCity.appendTo($container);
 
     let parkState = $('<li>').attr('class', 'resultState').html(park_state);
-    //append the phone to the container
+    //append the state to the container
     parkState.appendTo($container);
 
     let parkCoords = $('<li>').attr('class', 'resultCoords').html(coordinates);
-    //append the phone to the container
+    //append the coordinates to the container
     parkCoords.appendTo($container);
 
+    let parkImageCont = $('<div>').attr('class', 'resultImageCont')
     let parkImage = $('<li>').attr('class', 'resultImage').append(`<img src="${image}"/>`);
-    //append the phone to the container
-    parkImage.appendTo($container);
+    parkImage.appendTo(parkImageCont)
+    //append the image to the container
+    parkImageCont.appendTo($container);
 
     let parkDescription = $('<li>').attr('class', 'resultDescription').html(description);
-    //append the phone to the container
+    //append the description to the container
     parkDescription.appendTo($container);
 
     let parkWebsite = $('<li>').attr('class', 'resultWebsite').html(website);
