@@ -56,4 +56,22 @@ function initMap() {
 }
 initMap();
 
+var INTERVAL = 2000;
+
+function getMarkers() {
+    axios.get('/explore', {}, function(res,resp) {
+        for(let res of resp) {
+
+        let marker = new google.maps.Marker({
+          let splitCoords = res[i].split(" ");
+          let finalCoords = parseFloat(splitCoords);
+                position: new google.maps.LatLng(res[i].finalCoords[0],res[i].finalCoords[1]),
+                content: res[i].park_name,
+                map: map
+            });
+        }
+        window.setTimeout(getMarkers, INTERVAL);
+    }, "json");
+}
+
 });

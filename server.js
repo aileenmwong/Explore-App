@@ -30,14 +30,9 @@ app.get('/search', function(req, res){
   res.render('explore-search')
 });
 
-//render map page
-// app.get('/map', function(req, res){
-//   res.render('explore-map')
-// });
-
 // require the router
 const markerRoutes = require('./routes/marker-routes');
-app.use('/explore', markerRoutes);
+app.use('/api/pins', markerRoutes);
 
 // const apiRoutes = require('./routes/api-routes')
 // app.use('/apiroute', apiRoutes);
@@ -49,7 +44,6 @@ app.set('view engine', 'ejs');
 //require public folder so anything placed in public folder can be used
 app.use(express.static('public'));
 app.use(express.static(__dirname + "/public"));
-
 
 //assign port
 const port = process.env.PORT || 3000;

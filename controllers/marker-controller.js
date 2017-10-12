@@ -73,7 +73,7 @@ markerController.create = (req, res) => {
       user_id: req.body.user_id
     })
     .then (markers => {
-      res.redirect('/map');
+      res.redirect('/explore');
       })
     .catch (err => {
       console.log(err);

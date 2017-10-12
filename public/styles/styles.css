@@ -54,6 +54,7 @@ font-family: 'Pragati Narrow', sans-serif;*/
   width: 48%;
   margin: 2%;
   border: 1px solid black;
+  position: fixed;
 }
 
 #searchResults {

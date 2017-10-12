@@ -32,28 +32,10 @@ let description;
       }
     }
 
-    $.ajax(url)
-    .done(function(data) {
-      console.log('the data is -->', data.data);
-      for (let i=0; i < data.data.length; i++) {
-      park_name = data.data[i].fullName;
-      address = data.data[i].addresses[0].line1;
-      city = data.data[i].addresses[0].city;
-      park_state = data.data[i].addresses[0].stateCode;
-      coordinates = data.data[i].latLong;
-      image = data.data[i].images[0].url;
-      website = data.data[i].url;
-      description = data.data[i].description;
-      manipulateDom(park_name, address, city, park_state, coordinates, image, website, description);
-      }
-    })
-    .fail(function(data) {
-      console.log('failed getting park');
-    })
-  }
+
 
   // change the inner html of divs with appropriate data
-  var manipulateDom = function(park_name, address, city, park_state, coordinates, image, website, description){
+  var manipulateDom = function({park_name, address, city, park_state, coordinates, image, website, description}){
         //create a container to append the lis
     let $container = $('<ul>').attr('class', 'resultCont');
 
@@ -87,6 +69,11 @@ let description;
     //append the description to the container
     parkDescription.appendTo($container);
 
+    let parkSave = $('<input type="button" value="SAVE">').attr('class', 'resultSave')
+    //append the save button to the container
+    parkSave.appendTo($container);
+    //NEED TO MAKE THIS SAVE
+
     let parkWebsite = $('<li>').attr('class', 'resultWebsite').html(website);
     let websiteButton = $('<button>').attr('class', 'websiteButton').html('Go To Website');
     //append the website to the container
@@ -99,6 +86,31 @@ let description;
 
     //append the container to the search results
     $('#searchResults').append($container)
+  }
+
+  $.ajax(url)
+    .done(function(data) {
+      console.log('the data is -->', data.data);
+
+      data.data.map((park) => {
+        return {
+          park_name:   park.fullName,
+          address:     park.addresses[0].line1,
+          city:        addresses[0].city,
+          park_state:  addresses[0].stateCode,
+          coordinates: latLong,
+          image:       images[0].url,
+          website:     url,
+          description: description,
+        };
+      })
+      .forEach(manipulateDom)
+
+
+    })
+    .fail(function(data) {
+      console.log('failed getting park');
+    })
   }
 
   let searchButton = document.querySelector('#btnSearch');
