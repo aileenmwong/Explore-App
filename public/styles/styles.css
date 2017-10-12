@@ -1,7 +1,14 @@
 #map {
-    height: 400px;
-    width: 100%;
-  }
+  height: 400px;
+  width: 100%;
+  border: 1px solid black;
+}
+
+#searchMap {
+  height: 400px;
+  width: 100%;
+  border: 1px solid black;
+}
 
 /*LANDING PAGE*/
 #background {
@@ -10,3 +17,9 @@
 }
 
 /*SEARCH PAGE*/
+
+
+/*HOME PAGE*/
+#backgroundHome {
+  width: 100%;
+}

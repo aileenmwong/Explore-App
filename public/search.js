@@ -1,5 +1,5 @@
-// window.onload = function() {
-//   console.log('main.js is running');
+$(document).ready(function() {
+console.log('search.js is connected!');
 
 let park_name;
 let address;
@@ -104,16 +104,17 @@ let description;
   searchButton.addEventListener('click', callNps);
 
 
+
 // RENDER MAP
 // Render maps tutorial: https://www.youtube.com/watch?v=Zxf1mnP5zcw
-function initMap() {
+function initSearchMap() {
   // map options
   var options = {
     zoom: 4,
     center: {lat: 40.7134, lng: -74.0055},
   }
   // New map
-  var map = new google.maps.Map(document.getElementById('map'), options);
+  var map = new google.maps.Map(document.getElementById('searchMap'), options);
 
   //Listen for click on map
   google.maps.event.addListener(map, 'click', function(event){
@@ -156,5 +157,7 @@ function initMap() {
     });
     }
   }
-}
-// };
+};
+
+initSearchMap();
+});
