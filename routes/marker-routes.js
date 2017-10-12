@@ -9,11 +9,6 @@ const markerController = require('../controllers/marker-controller');
 const mapService = require('../services/maps-service');
 const npsService = require('../services/nps-service');
 
-//render search page
-markerRoutes.get('/search', (req, res) => {
-  res.render('explore-search')
-});
-
 // get the search page from the controller
 markerRoutes.get('/search', markerController.search);
 
@@ -23,8 +18,11 @@ markerRoutes.get('/:id', markerController.show);
 //get the delete function from the controller
 markerRoutes.delete('/:id', markerController.delete);
 
-//get the index page from the controller
+//get the map page from the controller
 markerRoutes.get('/', markerController.index);
+
+// //get the map page from the controller
+// markerRoutes.get('/map', markerController.index);
 
 //get the create frunction from the controller
 markerRoutes.post('/', markerController.index);

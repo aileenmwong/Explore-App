@@ -41,8 +41,6 @@ Marker.findById = (id) => {
   return db.oneOrNone(
     `
     SELECT * FROM parks
-    INNER JOIN users
-    ON user_id = users.id
     WHERE id = $1
     `, [id]);
 };

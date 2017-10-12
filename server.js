@@ -31,9 +31,9 @@ app.get('/search', function(req, res){
 });
 
 //render map page
-app.get('/map', function(req, res){
-  res.render('explore-map')
-});
+// app.get('/map', function(req, res){
+//   res.render('explore-map')
+// });
 
 // require the router
 const markerRoutes = require('./routes/marker-routes');

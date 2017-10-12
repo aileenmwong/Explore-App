@@ -2,7 +2,21 @@
 <% include ./partials/header %>
 <% include ./partials/nav-bar %>
 
-
+<main>
+  <div>
+      <div class="exploreParkImage"><img src="<%= data.image %>"></div>
+      <div class="exploreParkName"><%= data.park_name %></div>
+      <div class="exploreParkAddress"><%= data.address %></div>
+      <div class="exploreParkCity"><%= data.city %></div>
+      <div class="exploreParkState"><%= data.state %></div>
+      <div class="exploreParkCoordinates"><%= data.coordinates %></div>
+      <div class="exploreParkWebsite"><%= data.website %></div>
+      <div class="exploreParkDescription"><%= data.description %></div>
+      <form action="/explore/<%= data.id %>?_method=Delete " method="Post">
+      <div><button id="exploreParkDelete">DELETE</button></div>
+      </form>
+    </div>
+</main>
 
 
 <% include ./partials/end %>

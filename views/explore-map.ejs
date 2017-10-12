@@ -5,6 +5,23 @@
 <main>
   <h1>Explore your Parks</h1>
   <div id="map"></div>
+   <% for (let markers of data) { %>
+    <div>
+      <div class="exploreParkImage"><img src="<%= markers.image %>"></div>
+      <div class="exploreParkName"><%= markers.park_name %></div>
+      <div class="exploreParkAddress"><%= markers.address %></div>
+      <div class="exploreParkCity"><%= markers.city %></div>
+      <div class="exploreParkState"><%= markers.state %></div>
+      <div class="exploreParkCoordinates"><%= markers.coordinates %></div>
+      <div class="exploreParkWebsite"><%= markers.website %></div>
+      <div class="exploreParkDescription"><%= markers.description %></div>
+      <a href="/explore/<%= markers.id %>"><button class="exploreParkView" id="view">VIEW MORE</button></a>
+      <form action="/explore/<%= markers.id %>?_method=Delete " method="Post">
+        <div><button id="exploreParkDelete">DELETE</button></div>
+      </form>
+    </div>
+  <%}%>
 </main>
 
+<script src='/map.js'></script>
 <% include ./partials/end %>
