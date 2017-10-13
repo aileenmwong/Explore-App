@@ -4,17 +4,19 @@ INSERT INTO users (name, password) VALUES
 ('Aileen', 'password'),
 ('Sarah', 'password');
 
-INSERT INTO parks (park_name, address, city, state, coordinates, image, website, description, user_id) VALUES
+INSERT INTO parks (park_name, address, city, state, coordinates, lat, lng, image, website, description, user_id) VALUES
 (
   'Death Valley National Park',
   'PO Box 579',
   'Death Valley Junction',
   'CA',
   'lat:37.6152564, long:-119.0873903',
+  37.6152564,
+  -119.0873903,
   'https://www.nps.gov/common/uploads/structured_data/3C7D873E-1DD8-B71B-0BF8E731254A9D7E.jpg',
   'https://www.nps.gov/deva/index.htm',
   'In this below-sea-level basin, steady drought and record summer heat make Death Valley a land of extremes. Yet, each extreme has a striking contrast. Towering peaks are frosted with winter snow. Rare rainstorms bring vast fields of wildflowers. Lush oases harbor tiny fish and refuge for wildlife and humans. Despite its morbid name, a great diversity of life survives in Death Valley.',
-  '1'
+  1
 ),
 (
   'Point Reyes Lighthouse',
@@ -22,10 +24,12 @@ INSERT INTO parks (park_name, address, city, state, coordinates, image, website,
   'Point Reyes Station',
   'CA',
   'lat:38.05511241, long:-122.8797804',
+  38.05511241,
+  -122.8797804,
   'https://www.nps.gov/common/uploads/structured_data/3C7DC23A-1DD8-B71B-0B9711608EA94400.jpg',
   'https://www.nps.gov/pore/index.htm',
   'From its thunderous ocean breakers crashing against rocky headlands and expansive sand beaches to its open grasslands, brushy hillsides, and forested ridges, Point Reyes offers visitors over 1500 species of plants and animals to discover. Home to several cultures over thousands of years, the Seashore preserves a tapestry of stories and interactions of people. Point Reyes awaits your exploration.',
-  '1'
+  1
 ),
 (
   'Yellowstone National Park',
@@ -33,10 +37,12 @@ INSERT INTO parks (park_name, address, city, state, coordinates, image, website,
   'Yellowstone National Park',
   'WY',
   'lat:44.59824417, long:-110.5471695',
+  44.59824417,
+  -110.5471695,
   'https://www.nps.gov/common/uploads/structured_data/3C7D2FBB-1DD8-B71B-0BED99731011CFCE.jpg',
   'https://www.nps.gov/yell/index.htm',
   'Visit Yellowstone and experience the world''s first national park. Marvel at a volcano’s hidden power rising up in colorful hot springs, mudpots, and geysers. Explore mountains, forests, and lakes to watch wildlife and witness the drama of the natural world unfold. Discover the history that led to the conservation of our national treasures “for the benefit and enjoyment of the people.',
-  '2'
+  2
 ),
 (
   'Zion National Park',
@@ -44,10 +50,12 @@ INSERT INTO parks (park_name, address, city, state, coordinates, image, website,
   'Springdale',
   'UT',
   'lat:37.29839254, long:-113.0265138',
+  37.29839254,
+  -113.0265138,
   'https://www.nps.gov/common/uploads/structured_data/3C7F0203-1DD8-B71B-0B2DCAE32B684884.jpg',
   'https://www.nps.gov/zion/index.htm',
   'Follow the paths where ancient native people and pioneers walked. Gaze up at massive sandstone cliffs of cream, pink, and red that soar into a brilliant blue sky. Experience wilderness in a narrow slot canyon. Zion’s unique array of plants and animals will enchant you as you absorb the rich history of the past and enjoy the excitement of present day adventures.',
-  '1'
+  1
 ),
 (
   'Yosemite National Park',
@@ -55,6 +63,8 @@ INSERT INTO parks (park_name, address, city, state, coordinates, image, website,
   'Yosemite National Park',
   'CA',
   'lat:37.84883288, long:-119.5571873',
+  37.84883288,
+  -119.5571873,
   'https://www.nps.gov/common/uploads/structured_data/3C84C6CF-1DD8-B71B-0B1C7CB883AA8FB1.jpg',
   'https://www.nps.gov/yose/index.htm',
   'Not just a great valley, but a shrine to human foresight, the strength of granite, the power of glaciers, the persistence of life, and the tranquility of the High Sierra. First protected in 1864, Yosemite National Park is best known for its waterfalls, but within its nearly 1,200 square miles, you can find deep valleys, grand meadows, ancient giant sequoias, a vast wilderness area, and much more.',
@@ -66,8 +76,36 @@ INSERT INTO parks (park_name, address, city, state, coordinates, image, website,
   'Bar Harbor',
   'ME',
   'lat:44.30777545, long:-68.30063316',
+  44.30777545,
+  -68.30063316,
   'https://www.nps.gov/common/uploads/structured_data/3C7B45AE-1DD8-B71B-0B7EE131C7DFC2F5.jpg',
   'https://www.nps.gov/acad/index.htm',
   'During high visitation, you may experience delays entering the park, and increased travel times and congestion on scenic drives. Our best advice is to have back-up plans for your day. Between 10 am and 4 pm, and particularly on Cadillac Mountain for sunrise or sunset, destinations throughout Acadia can exceed capacity, and rangers may restrict access temporarily in the interest of public safety.',
-  '2'
+  2
+),
+(
+  'Alcatraz Island',
+  'Alcatraz Island',
+  'San Francisco',
+  'CA',
+  'lat:37.82676234, long:-122.4230206',
+  37.82676234,
+  -122.4230206,
+  'https://www.nps.gov/common/uploads/structured_data/A61F4F58-1DD8-B71B-0B981C552798242B.jpg',
+  'https://www.nps.gov/alca/index.htm',
+  'Alcatraz Island offers a close-up look at the site of the first lighthouse and US built fort on the West Coast, the infamous federal penitentiary long off-limits to the public, and the history making 18 month occupation by Indians of All Tribes. Rich in history, there is also a natural side to the Rock—gardens, tide pools, bird colonies, and bay views beyond compare.',
+  1
+),
+(
+  'Sunset Crater Volcano',
+  '6082 Sunset Crater Road',
+  'Flagstaff',
+  'AZ',
+  'lat:35.37114323, long:-111.510376',
+  35.37114323,
+  -111.510376,
+  'https://www.nps.gov/common/uploads/structured_data/3C7E2952-1DD8-B71B-0B586C9F9029F687.jpg',
+  'https://www.nps.gov/sucr/index.htm',
+  'The colors at the volcano''s rim are the dusky red, yellow, and orange of sunset, but the crater is only part of the story. Around 1085 CE the ground here began to shake, and a fiery crack spewed the earth''s insides high into the air. When the eruption finished, it had changed both the landscape and the people who lived here. Today, it teaches how nature and humans are linked to each other.',
+  2
 );

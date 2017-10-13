@@ -14,6 +14,8 @@ CREATE TABLE IF NOT EXISTS parks (
   city VARCHAR(255),
   state VARCHAR(255),
   coordinates VARCHAR(255),
+  lat INT,
+  lng INT,
   image VARCHAR(1000),
   website VARCHAR(1000),
   description VARCHAR(1000),
