@@ -21,14 +21,8 @@ let description;
       "stateCode": stateCode
     }
     let url = {
-      "async": true,
-      "crossDomain": true,
       "url": `https://developer.nps.gov/api/v0/parks?stateCode=${stateCode}&fields=images,addresses`,
-      "method": "GET",
-      "headers": {
-        "authorization": "B619A928-B3D8-4138-BDD4-B1C0CC6408C7",
-        "cache-control": "no-cache",
-        "postman-token": "6f542f13-6d93-a6db-26c0-727dce301262"
+      //change url to /parks/search - use filter function to read over collection ie state, name, on the backend
       }
     }
 
@@ -96,12 +90,12 @@ let description;
         return {
           park_name:   park.fullName,
           address:     park.addresses[0].line1,
-          city:        addresses[0].city,
-          park_state:  addresses[0].stateCode,
-          coordinates: latLong,
-          image:       images[0].url,
-          website:     url,
-          description: description,
+          city:        park.addresses[0].city,
+          park_state:  park.addresses[0].stateCode,
+          coordinates: park.latLong,
+          image:       park.images[0].url,
+          website:     park.url,
+          description: park.description,
         };
       })
       .forEach(manipulateDom)
