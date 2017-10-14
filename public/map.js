@@ -1,17 +1,11 @@
 $(document).ready(function() {
 console.log('map.js is connected!');
 
-<<<<<<< HEAD
-// // RENDER MAP
-// // Render maps tutorial: https://www.youtube.com/watch?v=Zxf1mnP5zcw
-// function initMap() {
-=======
 // RENDER MAP
 // Render maps tutorial: https://www.youtube.com/watch?v=Zxf1mnP5zcw
 
 // function initMap() {
 
->>>>>>> b6913c3758b7184fe60433e2fcffee2fa45c97dc
 //   // map options
 //   var options = {
 //     zoom: 4,
@@ -20,13 +14,6 @@ console.log('map.js is connected!');
 //   // New map
 //   var map = new google.maps.Map(document.getElementById('map'), options);
 
-<<<<<<< HEAD
-//   //Listen for click on map
-//   google.maps.event.addListener(map, 'click', function(event){
-//     //add marker
-//     addMarker({coords:event.latLng});
-//   });
-=======
   // let mapsUrl = {
   //   "async": true,
   //   "url": 'http://localhost:3000/explore0',
@@ -62,8 +49,6 @@ console.log('map.js is connected!');
   //     lng = data.data[i].lng;
   //   }
   // })
-
->>>>>>> b6913c3758b7184fe60433e2fcffee2fa45c97dc
 
 //   // array of markers
 //   var markers= [
@@ -103,10 +88,6 @@ console.log('map.js is connected!');
 // }
 // initMap();
 
-<<<<<<< HEAD
-=======
-
->>>>>>> b6913c3758b7184fe60433e2fcffee2fa45c97dc
 // var INTERVAL = 2000;
 
 // function getMarkers() {
