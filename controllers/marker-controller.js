@@ -61,17 +61,7 @@ markerController.show = (req, res) => {
 
 //posts an item to the db
 markerController.create = (req, res) => {
-  Marker.create({
-      park_name: req.body.park_name,
-      address: req.body.address,
-      city: req.body.city,
-      state: req.body.state,
-      coordinates: req.body.coordinates,
-      image: req.body.image,
-      website: req.body.website,
-      description: req.body.description,
-      user_id: req.body.user_id
-    })
+  Marker.create(req.body)
     .then (markers => {
       res.redirect('/explore');
       })

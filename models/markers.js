@@ -65,9 +65,9 @@ Marker.create = parks => {
     `
     INSERT INTO parks
     (park_name, address, city, state, coordinates, image, website, description)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+    VALUES ($/park_name/, $/address/, $/city/, $/state/, $/coordinates/, $/image/, $/website/, $/description/)
     RETURNING *
-    `, [parks.park_name, parks.address, parks.city, parks.state, parks.coordinates, parks.image, parks.website, parks.description]
+    `, parks
     );
 };
 
