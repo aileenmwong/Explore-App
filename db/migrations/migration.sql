@@ -19,5 +19,6 @@ CREATE TABLE IF NOT EXISTS parks (
   image VARCHAR(1000),
   website VARCHAR(1000),
   description VARCHAR(1000),
+  weather VARCHAR(1000),
   user_id INTEGER REFERENCES users
 );

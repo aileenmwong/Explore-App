@@ -28,17 +28,14 @@ console.log('map.js is connected!');
   // });
 
   // fetch(mapsUrl)
-
   // .then (function(data) {
   //   let markerData = data.results;
   //   console.log('this is the response -->' resp);
   // })
   // .then ((resp) => resp.json())
   // .then((function(data) {
-
   // })
   // .catch(function(error) {
-
   // });
 
   // let lat;

@@ -4,7 +4,7 @@ INSERT INTO users (name, password) VALUES
 ('Aileen', 'password'),
 ('Sarah', 'password');
 
-INSERT INTO parks (park_name, address, city, state, coordinates, lat, lng, image, website, description, user_id) VALUES
+INSERT INTO parks (park_name, address, city, state, coordinates, lat, lng, image, website, description, weather, user_id) VALUES
 (
   'Death Valley National Park',
   'PO Box 579',
@@ -16,6 +16,7 @@ INSERT INTO parks (park_name, address, city, state, coordinates, lat, lng, image
   'https://www.nps.gov/common/uploads/structured_data/3C7D873E-1DD8-B71B-0BF8E731254A9D7E.jpg',
   'https://www.nps.gov/deva/index.htm',
   'In this below-sea-level basin, steady drought and record summer heat make Death Valley a land of extremes. Yet, each extreme has a striking contrast. Towering peaks are frosted with winter snow. Rare rainstorms bring vast fields of wildflowers. Lush oases harbor tiny fish and refuge for wildlife and humans. Despite its morbid name, a great diversity of life survives in Death Valley.',
+  'Autumn arrives in late October, with warm but pleasant temperatures and generally clear skies.\nWINTER has cool days, chilly nights and rarely, rainstorms. With snow capping the high peaks and low angled winter light, this season is especially beautiful for exploring the valley.\nSPRINGTIME is the most popular time to visit Death Valley. Besides warm and sunny days, the possibility of spring wildflowers is a big attraction.\nSUMMER starts early in Death Valley. By May the valley is too hot for most visitors.',
   1
 ),
 (
@@ -29,6 +30,7 @@ INSERT INTO parks (park_name, address, city, state, coordinates, lat, lng, image
   'https://www.nps.gov/common/uploads/structured_data/3C7DC23A-1DD8-B71B-0B9711608EA94400.jpg',
   'https://www.nps.gov/pore/index.htm',
   'From its thunderous ocean breakers crashing against rocky headlands and expansive sand beaches to its open grasslands, brushy hillsides, and forested ridges, Point Reyes offers visitors over 1500 species of plants and animals to discover. Home to several cultures over thousands of years, the Seashore preserves a tapestry of stories and interactions of people. Point Reyes awaits your exploration.',
+  'The moderating influence of the Pacific Ocean creates a climate with no great extremes of heat or cold. Any season can bring interesting weather during your visit to Point Reyes National Seashore. Come prepared!',
   1
 ),
 (
@@ -42,6 +44,7 @@ INSERT INTO parks (park_name, address, city, state, coordinates, lat, lng, image
   'https://www.nps.gov/common/uploads/structured_data/3C7D2FBB-1DD8-B71B-0BED99731011CFCE.jpg',
   'https://www.nps.gov/yell/index.htm',
   'Visit Yellowstone and experience the world''s first national park. Marvel at a volcano’s hidden power rising up in colorful hot springs, mudpots, and geysers. Explore mountains, forests, and lakes to watch wildlife and witness the drama of the natural world unfold. Discover the history that led to the conservation of our national treasures “for the benefit and enjoyment of the people.',
+  'Yellowstone''s weather can vary quite a bit, even in a single day. In the summer, daytime highs can exceed 70F (25C), only to drop 20 or more degrees when a thunderstorm rolls through. It can snow during any month of the year, and winter lows frequently drop below zero, especially at night. Bring a range of clothing options, including a warm jacket and rain gear, even in the summer.',
   2
 ),
 (
@@ -55,6 +58,7 @@ INSERT INTO parks (park_name, address, city, state, coordinates, lat, lng, image
   'https://www.nps.gov/common/uploads/structured_data/3C7F0203-1DD8-B71B-0B2DCAE32B684884.jpg',
   'https://www.nps.gov/zion/index.htm',
   'Follow the paths where ancient native people and pioneers walked. Gaze up at massive sandstone cliffs of cream, pink, and red that soar into a brilliant blue sky. Experience wilderness in a narrow slot canyon. Zion’s unique array of plants and animals will enchant you as you absorb the rich history of the past and enjoy the excitement of present day adventures.',
+  'Zion is known for a wide range of weather conditions. Temperatures vary with changes in elevation and day/night temperatures may differ by over 30°F.\n\nIn summer, temperatures in Zion National Park often exceed 100°F/38°C. Zion experiences monsoons from mid-July into September that results in an increased risk of flash floods. Always be aware of the threat of storms and lightning and be prepared for a wide range of weather conditions. Winters are generally mild.',
   1
 ),
 (
@@ -68,6 +72,7 @@ INSERT INTO parks (park_name, address, city, state, coordinates, lat, lng, image
   'https://www.nps.gov/common/uploads/structured_data/3C84C6CF-1DD8-B71B-0B1C7CB883AA8FB1.jpg',
   'https://www.nps.gov/yose/index.htm',
   'Not just a great valley, but a shrine to human foresight, the strength of granite, the power of glaciers, the persistence of life, and the tranquility of the High Sierra. First protected in 1864, Yosemite National Park is best known for its waterfalls, but within its nearly 1,200 square miles, you can find deep valleys, grand meadows, ancient giant sequoias, a vast wilderness area, and much more.',
+  'Yosemite National Park covers nearly 1,200 square miles (3,100 square km) in the Sierra Nevada, with elevations ranging from about 2,000 feet (600 m) to 13,000 ft (4,000 m). Yosemite receives 95% of its precipitation between October and May (and over 75% between November and March). Most of Yosemite is blanketed in snow from about November through May. (Yosemite Valley can be rainy or snowy in any given winter storm.)',
   '2'
 ),
 (
@@ -81,6 +86,7 @@ INSERT INTO parks (park_name, address, city, state, coordinates, lat, lng, image
   'https://www.nps.gov/common/uploads/structured_data/3C7B45AE-1DD8-B71B-0B7EE131C7DFC2F5.jpg',
   'https://www.nps.gov/acad/index.htm',
   'During high visitation, you may experience delays entering the park, and increased travel times and congestion on scenic drives. Our best advice is to have back-up plans for your day. Between 10 am and 4 pm, and particularly on Cadillac Mountain for sunrise or sunset, destinations throughout Acadia can exceed capacity, and rangers may restrict access temporarily in the interest of public safety.',
+  'Located on Mount Desert Island in Maine, Acadia experiences all four seasons. Summer temperatures range from 45-90F (7-30C). Fall temperatures range from 30-70F (-1-21C). Typically the first frost is in mid-October and first snowfall begins in November and can continue through April with an average accumulation of 73 inches (185 cm). Winter temperatures range from 14-35F (-10 - 2C). Spring temperatures range from 30-70F (-1-21C).',
   2
 ),
 (
@@ -94,6 +100,7 @@ INSERT INTO parks (park_name, address, city, state, coordinates, lat, lng, image
   'https://www.nps.gov/common/uploads/structured_data/A61F4F58-1DD8-B71B-0B981C552798242B.jpg',
   'https://www.nps.gov/alca/index.htm',
   'Alcatraz Island offers a close-up look at the site of the first lighthouse and US built fort on the West Coast, the infamous federal penitentiary long off-limits to the public, and the history making 18 month occupation by Indians of All Tribes. Rich in history, there is also a natural side to the Rock—gardens, tide pools, bird colonies, and bay views beyond compare.',
+  'The climate on Alcatraz is unpredictable and can change suddenly. Cold, foggy mornings may give way to sunny afternoons, which in turn can shift quickly back to more fog and blustery winds. The most pleasant weather usually occurs in spring and fall. Summers tend to be cool and foggy, winter is our rainy season. Temperatures on Alcatraz seldom rise above 75°F (24°C) or fall below 38',
   1
 ),
 (
@@ -107,5 +114,6 @@ INSERT INTO parks (park_name, address, city, state, coordinates, lat, lng, image
   'https://www.nps.gov/common/uploads/structured_data/3C7E2952-1DD8-B71B-0B586C9F9029F687.jpg',
   'https://www.nps.gov/sucr/index.htm',
   'The colors at the volcano''s rim are the dusky red, yellow, and orange of sunset, but the crater is only part of the story. Around 1085 CE the ground here began to shake, and a fiery crack spewed the earth''s insides high into the air. When the eruption finished, it had changed both the landscape and the people who lived here. Today, it teaches how nature and humans are linked to each other.',
+  'Be prepared for variable and extreme weather conditions. You may expect high winds any time of year, summer temperatures above 95ºF (35ºC), afternoon storms July–September, and snow from fall to spring. Dress in layers, as weather at Sunset Crater Volcano can change quickly at any time of year.',
   2
 );
