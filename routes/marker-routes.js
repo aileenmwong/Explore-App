@@ -30,4 +30,3 @@ markerRoutes.post('/', markerController.create);
 // export the router
 module.exports = markerRoutes;
 
-

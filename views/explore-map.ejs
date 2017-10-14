@@ -1,6 +1,7 @@
 <% include ./partials/boilerplate %>
 <% include ./partials/header %>
 <% include ./partials/nav-bar %>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi4EQUgIPHsZR_zfUnKAe9Z1cwqQdHXG4"></script>
 
 <main>
   <h1>Explore your Parks</h1>
@@ -23,5 +24,91 @@
   <%}%>
 </main>
 
+<script>
+  var markers = <%- JSON.stringify(data) %>;
+</script>
+<script>
+function initMap() {
+
+  // map options
+  var options = {
+    zoom: 4,
+    center: {lat: 40.7134, lng: -74.0055},
+  }
+  // New map
+  var map = new google.maps.Map(document.getElementById('map'), options);
+
+  //Listen for click on map
+  google.maps.event.addListener(map, 'click', function(event){
+    //add marker
+    addMarker({coords:event.latLng});
+  });
+
+// array of markers
+  // var markers= [
+  // {
+  //   coords: {lat: 40.650002, lng: -73.949997},
+  //   //coords: `lat: ${latlong}, lng: ${variablename}`
+  //   content: '<h1>Brooklyn, NY</h1>'
+  // },
+  // {
+  //   coords: {lat: 32.8235, lng: -97.1706},
+  //   content: '<h1>Hurst, TX</h1>'
+  // },
+  // {
+  //   coords: {lat: marker.lat, lng: -97.1706},
+  //   content: '<h1>Hurst, TX</h1>'
+  // }
+  // ];
+  // console.log(markers.lat)
+
+  // //loop through markers
+  // for(var i=0;i<markers.length;i++){
+  //   addMarker(markers[i]);
+  // }
+
+//FOLLOWED THESE CLASS NOTES FROM ANOTHER WDI CLASS
+//https://wdi_sea.gitbooks.io/notes/content/05-express/additional-topics/express-geocode/readme.html
+
+  // for each marker passed through, add it to the map with a popup
+  markers.forEach(function(marker) {
+    console.log(marker);
+    var position = new google.maps.LatLng(marker.lat, marker.lng);
+    var googleMarker = new google.maps.Marker({
+      position: position,
+      title: marker.name,
+      map: map
+    })
+
+
+   // Bind a popup to the marker
+    googleMarker.addListener('click', function() {
+      var infoWindow = new google.maps.InfoWindow({
+        content: '<h3>' + marker.park_name + '</h3>'
+      });
+      infoWindow.open(map, googleMarker);
+    });
+      });
+
+  // // Add marker function
+  // function addMarker(props) {
+  //   var marker = new google.maps.Marker({
+  //     position: props.coords,
+  //     map: map,
+  //   });
+  //   //check for content
+  //   if (props.content){
+  //     var infoWindow = new google.maps.InfoWindow({
+  //     content: props.content
+  //   });
+
+  //   marker.addListener('click', function() {
+  //     infoWindow.open(map, marker);
+  //   });
+  //   }
+  // }
+}
+initMap();
+</script>
 <script src='/map.js'></script>
 <% include ./partials/end %>
