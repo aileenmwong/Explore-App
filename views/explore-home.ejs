@@ -1,13 +1,39 @@
 <% include ./partials/boilerplate %>
-<% include ./partials/header %>
 <% include ./partials/nav-bar %>
 
 <main>
   <div>
-    <div id="backgroundHome"></div>
-    <div id="location"></div>
-    <a href="/map"><button id="btnStart">START EXPLORING</button></a>
+    <div id="homeWrapper">
+      <img onclick="changeImageToRandomImage()" id="backgroundHome" src="img/image_0.jpg">
+      <div id="backgroundHome"></div>
+      <div id="location"></div>
+      <div id="appName">EXPLORE</div>
+      <div id="startButton">
+        <a href="/explore"><button id="btnStart">START EXPLORING</button></a>
+      </div>
+    </div>
   </div>
 </main>
+<script>
+function changeImageToRandomImage() {
+   backgrounds = ['assets/natlpark1.jpg', 'assets/natlpark2.jpg','assets/natlpark3.jpg','assets/natlpark4.jpg', 'assets/natlpark5.jpg', 'assets/natlpark6.jpg', 'assets/natlpark7.jpg', 'assets/natlpark8.jpg'];
+   var random = backgrounds[Math.floor(Math.random()*backgrounds.length)];
+   document.querySelector('#backgroundHome').src= random;
+};
 
+function changeImageTimer() {
+  backgrounds = ['assets/natlpark1.jpg', 'assets/natlpark2.jpg','assets/natlpark3.jpg','assets/natlpark4.jpg', 'assets/natlpark5.jpg', 'assets/natlpark6.jpg', 'assets/natlpark7.jpg', 'assets/natlpark8.jpg'];
+  document.querySelector('#backgroundHome').src = backgrounds[i];
+  if (i <= backgrounds.length){
+    i += 1;
+  }
+  window.onload = function() {
+  var i = 0;
+  setInterval(function() {
+    changeImage()
+  },1000);
+}
+
+}
+</script>
 <% include ./partials/end %>

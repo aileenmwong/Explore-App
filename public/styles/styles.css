@@ -1,6 +1,17 @@
 /*font-family: 'Questrial', sans-serif;
 font-family: 'Pragati Narrow', sans-serif;*/
 
+/*HEADER*/
+
+#logoHeader {
+  font-family: 'Questrial', sans-serif;
+  text-transform: uppercase;
+  height: 50px;
+  width: 100%;
+  text-align: center;
+}
+
+
 /*NAV BAR*/
 
 #navBar {
@@ -16,7 +27,7 @@ font-family: 'Pragati Narrow', sans-serif;*/
 
 .navLinks {
   text-decoration: none;
-  font-family: 'Quicksand', sans-serif;
+  ffont-family: 'Questrial', sans-serif;
   display: inline;
   background-color: rgb(88,193,185);
   padding: 5px 30px;
@@ -37,9 +48,23 @@ font-family: 'Pragati Narrow', sans-serif;*/
 }
 
 /*LANDING PAGE*/
-#background {
+#backgroundHome {
   height: 100%;
-  background-image:
+  width: 100%;
+  object-fit: contain;
+  background-image: url
+}
+
+#startButton {
+  margin: 0 auto;
+}
+
+#appName {
+  font-family: 'Questrial', sans-serif;
+  text-transform: uppercase;
+  font-size: 100px;
+  text-align: center;
+
 }
 
 /*SEARCH PAGE*/
