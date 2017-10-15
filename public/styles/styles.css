@@ -358,6 +358,8 @@ font-family: 'Pragati Narrow', sans-serif;
   display: flex;
   flex-direction: column;
   margin-left: 30px;
+  width: 100%;
+  padding: 10px;
 }
 
 .addressContainer {
@@ -384,11 +386,15 @@ font-family: 'Pragati Narrow', sans-serif;
   position: relative;
 }
 
-
-
 .exploreParkName {
   font-family: 'Questrial', sans-serif;
   font-size: 20px;
+}
+
+.exploreParkNameCont {
+  background-color: rgb(102,178,102);
+  width: 100%;
+  padding: 5px;
 }
 
 .exploreParkAddress {

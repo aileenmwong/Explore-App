@@ -61,12 +61,6 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
         lat: parseFloat(lat),
         lng: parseFloat(lng),
       }
-      console.log(cor)
-      console.log(typeof cor.lat)
-      console.log(cor.lat)
-      console.log(typeof cor.lng)
-      console.log(cor.lng)
-
       addMarkerFromApi(cor);
       };
 
@@ -75,20 +69,6 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
       console.log('failed getting park');
     });
   };
-
-    // function getParks(coordinates) {
-    //    callNps().map((data) => {
-    //     console.log(data)
-    //   const [foo, lat, lng] =  coordinates.latLong ? coordinates.latLong.match(/^lat:(.+),.+:(.+)$/) : [0,0,0];
-    //   let cor = {
-    //     ...coordinates,
-    //     lat: parseFloat(lat),
-    //     lng: parseFloat(lng),
-    //   }
-    //   console.log('this is the lat -->', + lat)
-    // })
-    //   console.log('this is the lat -->', lat)
-    // }
 
   // change the inner html of divs with appropriate data
   var manipulateDom = function(park_name, address, city, park_state, coordinates, image, website, description){
@@ -231,11 +211,8 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
       });
       };
     };
-
   };
 
 initSearchMap();
-
-
 
 });
