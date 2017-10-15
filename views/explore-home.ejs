@@ -1,16 +1,14 @@
 <% include ./partials/boilerplate %>
-<% include ./partials/nav-bar %>
 
 <main>
   <div>
     <div id="homeWrapper">
-      <div><img id="timer"></div>
-<!--       <img onclick="changeImageToRandomImage()" id="backgroundHome" src="assets/natlpark1.jpg">
- -->  <img name="backgroundHome" id="backgroundHome">
-      <div id="location"></div>
-      <div id="appName">EXPLORE</div>
-      <div id="startButton">
-        <a href="/explore"><button id="btnStart">START EXPLORING</button></a>
+      <img name="backgroundHome" id="backgroundHome">
+      <div id="logoWrapper">
+        <div id="appName">EXPLORE</div>
+        <div id="startButton">
+          <a id="homeBtn" href="/explore"><div id="btnStart">start your adventure</div></a>
+        </div>
       </div>
     </div>
   </div>

@@ -1,22 +1,38 @@
 <% include ./partials/boilerplate %>
 <% include ./partials/header %>
-<% include ./partials/nav-bar %>
 
 <main>
-  <div>
-      <div class="exploreParkImage"><img src="<%= data.image %>"></div>
-      <div class="exploreParkName"><%= data.park_name %></div>
-      <div class="exploreParkAddress"><%= data.address %></div>
-      <div class="exploreParkCity"><%= data.city %></div>
-      <div class="exploreParkState"><%= data.state %></div>
-      <div class="exploreParkCoordinates"><%= data.coordinates %></div>
-      <div class="exploreParkWebsite"><%= data.website %></div>
-      <div class="exploreParkDescription"><%= data.description %></div>
-      <div class="exploreParkWeather"><%= data.weather %></div>
-      <form action="/explore/<%= data.id %>?_method=Delete " method="Post">
-      <div><button id="exploreParkDelete">DELETE</button></div>
-      </form>
+  <div class="singleWrapper">
+    <div class="singleImageHeader">
+      <div class="singleParkName"><%= data.park_name %></div>
+      <div class="singleParkImage"><img id="singleParkImageTag" src="<%= data.image %>"></div>
     </div>
+    <div class="singleContentWrapper">
+      <div id="singleDescriptionBox" class="singleDescriptionWrapper">
+        <div class="singleDescriptionHeader">What's <%= data.park_name %> like?</div>
+        <div class="singleParkDescription"><%= data.description %></div>
+      </div>
+      <div id="singleWeatherBox" class="singleWeatherWrapper">
+        <div class="singleWeatherHeader">Weather</div>
+        <div class="singleParkWeather"><%= data.weather %></div>
+      </div>
+      <div class="singleContactInfo">
+        <div id="singleWebsiteBox" class="singleWebsiteInfo">
+          <div class="singleWebsiteHeader">Locate your park</div>
+          <div class="singleParkCoordinates"><%= data.coordinates %></div>
+          <a href="<%= data.website %>"><div class="singleParkWebsite"><%= data.website %></div></a>
+        </div>
+        <div id="singleAddressBox" class="singleAddressWrapper">
+          <div class="singleAddressHeader">Address</div>
+          <div class="singleParkAddress"><%= data.address %></div>
+            <div class="singleParkCityState"><%= data.city %>, <%= data.state %></div>
+        </div>
+      </div>
+    </div>
+    <form action="/explore/<%= data.id %>?_method=Delete " method="Post">
+    <div><button id="singleParkDelete">DELETE</button></div>
+    </form>
+  </div>
 </main>
 
 

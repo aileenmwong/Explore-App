@@ -1,16 +1,33 @@
-/*font-family: 'Questrial', sans-serif;
-font-family: 'Pragati Narrow', sans-serif;*/
+/*font-family: 'Just Another Hand', cursive;
+font-family: 'Caveat Brush', cursive;
+font-family: 'Gloria Hallelujah', cursive;
+font-family: 'Pragati Narrow', sans-serif;
+font-family: 'Questrial', sans-serif;
+*/
 
-/*HEADER*/
-
-#logoHeader {
-  font-family: 'Questrial', sans-serif;
-  text-transform: uppercase;
-  height: 50px;
+img {
   width: 100%;
-  text-align: center;
+  height: 100%;
+  object-fit: cover;
+}
+/*HEADER*/
+#headerWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
 }
 
+.headerItem {
+
+}
+
+#logoHeader {
+  font-family: 'Caveat Brush', cursive;
+  text-transform: uppercase;
+  font-size: 40px;
+  margin-left: 30px;
+}
 
 /*NAV BAR*/
 
@@ -27,55 +44,85 @@ font-family: 'Pragati Narrow', sans-serif;*/
 
 .navLinks {
   text-decoration: none;
-  ffont-family: 'Questrial', sans-serif;
+  font-family: 'Questrial', sans-serif;
   display: inline;
-  background-color: rgb(88,193,185);
+  background-color: white;
   padding: 5px 30px;
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  color: white;
+  color: black;
 }
 
 .navLinks:hover {
-  background-color: rgb(241,89,42);
-}
-
-#map {
-  height: 400px;
-  width: 100%;
-  border: 1px solid black;
+  background-color: rgb(183,49,0);
 }
 
 /*LANDING PAGE*/
 
 #backgroundHome {
-  height: 500px;
-  width: 500px;
   object-fit: contain;
   opacity: 0;
   transition: opacity 2s linear;
-}
-
-#timer {
-  height: 100%;
   width: 100%;
-  object-fit: contain;
+  height: auto;
+  position: absolute;
+  filter: opacity(.8);
 }
 
 #startButton {
-  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  padding: 10px;
+  background-color: #F0F0F0;
+  margin: 10px;
+  box-shadow: 2px 2px 2px #000000;
+}
+
+#homeBtn {
+  text-decoration: none;
+  font-family: 'Pragati Narrow', sans-serif;
+  font-size: 24px;
+  color: rgb(0,0,0);
 }
 
 #appName {
-  font-family: 'Questrial', sans-serif;
+/*  font-family: 'Gloria Hallelujah', cursive;*/
+  font-family: 'Caveat Brush', cursive;
   text-transform: uppercase;
-  font-size: 100px;
+  font-size: 150px;
   text-align: center;
-
+  color: #F0F0F0;
+/*  color: rgb(183,49,0);*/
+  text-shadow: 2px 2px #000000;
 }
 
+#homeWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#logoWrapper {
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  margin-top: 25%;
+}
+
+
 /*SEARCH PAGE*/
+
+#submitField {
+  display: flex;
+  flex-direction: column;
+}
+
+#searchField {
+  display: flex;
+  flex-direction: row;
+}
 
 #searchResultsWrapper {
   display: flex;
@@ -83,9 +130,8 @@ font-family: 'Pragati Narrow', sans-serif;*/
 
 
 #searchMap {
-  height: 400px;
-  width: 48%;
-  margin: 2%;
+  height: 600px;
+  width: 100%;
   border: 1px solid black;
   position: fixed;
 }
@@ -153,39 +199,81 @@ font-family: 'Pragati Narrow', sans-serif;
 }
 
 
-/*HOME PAGE*/
-#backgroundHome {
+/*MAP PAGE*/
+
+#map {
+  height: 800px;
   width: 100%;
+  border: 1px solid black;
 }
 
-/*MAP PAGE*/
+#mapsHeader {
+  font-family: 'Questrial', sans-serif;
+  font-size: 30px;
+  margin: 30px;
+  text-align: center;
+}
+
+.exploreParkContainer {
+  border: 1px solid black;
+  display: flex;
+  padding: 10px;
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.textContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+}
+
+.addressContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+/*.linkContainer {
+  text-decoration: none;
+}*/
+
 .exploreParkImage{
   height: auto;
   width: auto;
   max-height: 250px;
-  max-width: 20%;
+  max-width: 40%;
   object-fit: scale-down;
   overflow: hidden;
-
+  position: relative;
 }
 
-img {
-  width: 100%;
-  height: 100%;
-}
+
+
 .exploreParkName {
   font-family: 'Questrial', sans-serif;
+  font-size: 20px;
 }
+
 .exploreParkAddress {
   font-family: 'Pragati Narrow', sans-serif;
+  margin: 0 3px;
 
 }
 .exploreParkCity {
   font-family: 'Pragati Narrow', sans-serif;
+  margin: 0 3px;
 
 }
 .exploreParkState {
   font-family: 'Pragati Narrow', sans-serif;
+  margin: 0 3px;
 
 }
 .exploreParkCoordinates {
@@ -203,4 +291,105 @@ img {
 .exploreParkWeather {
   font-family: 'Pragati Narrow', sans-serif;
 
+}
+.exploreParkView {
+  font-family: 'Questrial', sans-serif;
+  padding: 5px;
+  margin: 5px;
+}
+.exploreParkDelete {
+  font-family: 'Questrial', sans-serif;
+  padding: 5px;
+  margin: 5px;
+}
+
+/*SINGLE VIEW*/
+.singleWrapper {
+  width: 100%;
+  border: 1px solid black;
+  margin: 0 auto;
+}
+
+.singleImageHeader {
+  display: flex;
+  position: relative;
+}
+
+.singleParkName {
+  position: absolute;
+  font-family: 'Questrial', sans-serif;
+  font-size: 30px;
+  text-align: left;
+  padding: 5%;
+  width: 90%;
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  align-self: flex-end;
+}
+
+.singleParkImage {
+  width: 100%;
+  height: 500px;
+  margin: 0 auto;
+
+}
+
+.singleContentWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.singleContactInfo {
+ display: flex;
+ flex-direction: column;
+ width: 100%;
+ padding: 0;
+}
+
+#singleAddressBox {
+  background-color: rgb(102,178,102);
+  color: white;
+  padding-top: 10px;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-bottom: 10px;
+  font-family: 'Pragati Narrow', sans-serif;
+  font-size: 18px;
+}
+
+.singleAddressHeader {
+  font-family: 'Questrial', sans-serif;
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+#singleWebsiteBox {
+  background-color: rgb(102,178,102);
+  color: white;
+  font-family: 'Pragati Narrow', sans-serif;
+  font-size: 18px;
+}
+
+.singleWebsiteHeader {
+  font-family: 'Questrial', sans-serif;
+  font-size: 30px;
+  margin-bottom: 5px;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  width: 94%;
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+}
+
+.singleParkCoordinates {
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
+.singleParkWebsite {
+  padding-left: 3%;
+  padding-right: 3%;
 }
