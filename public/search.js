@@ -159,8 +159,19 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
     //wrap the link in a working link tag
     parkWebsite.wrap('<a href="'+ website +'"></a>');
 
-    let saveResult = $('<button>').attr('class', 'saveButton').html('SAVE THIS PARK');
+    let saveResult = $('<button>').attr({class: 'saveButton', type: 'submit'}).html('SAVE THIS PARK');
     $container.append(saveResult);
+
+    // let saveInput = $('<input>').attr({type:'hidden', value: "<%= markers.park_name %>", class: 'saveButton'})
+    // let saveResult = $('<button>').attr({class: 'saveButton', type: 'submit'}).html('SAVE THIS PARK');
+    // let wrappedForm = $('.saveButton').wrapAll('<form action="" method="POST" />')
+    // $container.append(wrappedForm);
+
+    // TO SAVE TO DB
+    // <form action="" method="POST">
+    // <input type="hidden" value="<%= markers.park_name %>" />
+    // <button type="submit">Save</button>
+    // </form>
 
     //append the container to the search results
     $('#searchResults').append($container);
@@ -225,10 +236,6 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
 
 initSearchMap();
 
-//TO SAVE TO DB
-// <form action="" method="POST">
-// <input type="hidden" value="<%= markers.park_name %>" />
-// <button type="submit">Save</button>
-// </form>
+
 
 });
