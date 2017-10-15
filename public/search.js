@@ -9,10 +9,18 @@ let coordinates;
 let image;
 let website;
 let description;
+let lat;
+let lng;
 
+var options = {
+  zoom: 4,
+  center: {lat: 40.7134, lng: -74.0055},
+};
+// New map
+var map = new google.maps.Map(document.getElementById('searchMap'), options);
 
   var callNps = function(event) {
-    event.preventDefault();
+    // event.preventDefault();
     // the callNps function makes the ajax call to get the data
     let stateCode = document.querySelector('#input').value;
     console.log(stateCode);
@@ -31,18 +39,12 @@ let description;
       }
     };
 
-    // let mapsUrl = {
-    //   "async": true,
-    //   "url": 'http://localhost:3000/test',
-    //   "method": "GET",
-    // }
-
     $.ajax(url)
     .done(function(data) {
       console.log('the data is -->', data.data);
       for (let i=0; i < data.data.length; i++) {
       park_name = data.data[i].fullName;
-      address = data.data[i].addresses[0].line1;
+      // address = data.data[i].addresses[0].line1;
       city = data.data[i].addresses[0].city;
       park_state = data.data[i].addresses[0].stateCode;
       coordinates = data.data[i].latLong;
@@ -50,41 +52,43 @@ let description;
       website = data.data[i].url;
       description = data.data[i].description;
       manipulateDom(park_name, address, city, park_state, coordinates, image, website, description);
+      const [foo, lat, lng] = coordinates.match(/^lat:(.+),.+:(.+)$/)
+      let cor = {
+        ...coordinates,
+        lat: parseFloat(lat),
+        lng: parseFloat(lng),
+      }
+      console.log(cor)
+      console.log(typeof cor.lat)
+      console.log(cor.lat)
+      console.log(typeof cor.lng)
+      console.log(cor.lng)
+      addMarkerFromApi(cor);
       };
+
     })
     .fail(function(data) {
       console.log('failed getting park');
     });
   };
 
-    function getParks(coordinates) {
-      return callNps().map((data) => {
-      const [foo, lat, lng] =  coordinates.latLong ? coordinates.latLong.match(/^lat:(.+),.+:(.+)$/) : [0,0,0];
-      return {
-        ...coordinates,
-        lat: parseFloat(lat),
-        lng: parseFloat(lng),
-      }
-      console.log('this is the lat -->', + lat)
-    })
-    }
-    console.log(coordinates);
-
-    //   function getParks() {
-    //   debugger;
-    //   return (readParksFromFile() || getAllParks()).map((park) => {
-    //     const [foo, lat, lng] =  park.latLong ? park.latLong.match(/^lat:(.+),.+:(.+)$/) : [0,0,0];
-    //     return {
-    //       ...park,
-    //       lat: parseFloat(lat),
-    //       lng: parseFloat(lng),
-    //     }
-    //   })
-    // };
+    // function getParks(coordinates) {
+    //    callNps().map((data) => {
+    //     console.log(data)
+    //   const [foo, lat, lng] =  coordinates.latLong ? coordinates.latLong.match(/^lat:(.+),.+:(.+)$/) : [0,0,0];
+    //   let cor = {
+    //     ...coordinates,
+    //     lat: parseFloat(lat),
+    //     lng: parseFloat(lng),
+    //   }
+    //   console.log('this is the lat -->', + lat)
+    // })
+    //   console.log('this is the lat -->', lat)
+    // }
 
   // change the inner html of divs with appropriate data
   var manipulateDom = function(park_name, address, city, park_state, coordinates, image, website, description){
-
+      // console.log('this is the lat line 87 part2-->', + lat)
     //create a container to append the lis
     let $container = $('<ul>').attr('class', 'resultCont');
 
@@ -135,25 +139,49 @@ let description;
   //add event listener to the submit button and call Api function
   searchButton.addEventListener('click', callNps);
 
+  function addMarkerFromApi(cor) {
+    console.log('inside add marker from api')
+  // cor.forEach(function addMarkerFromApi (cor) {
+    // console.log('this is cor -->', cor);
+    // console.log('this is cor lat -->', cor.lat);
+    // console.log('this is cor lat -->', cor.lng);
+    let lat = cor.lat;
+    let lng = cor.lng
+    var position = new google.maps.LatLng(lat, lng);
+    console.log('position lat -->', lat)
+    console.log('position lng -->', lng)
+    // console.log(position);
+    var googleMarker = new google.maps.Marker({
+      position: position,
+      title: park_name,
+      map: map
+    })
+    console.log(googleMarker);
+
+    //   markers.forEach(function(marker) {
+    // console.log(marker);
+    // var position = new google.maps.LatLng(marker.lat, marker.lng);
+    // var googleMarker = new google.maps.Marker({
+    //   position: position,
+    //   title: marker.name,
+    //   map: map
+    // })
+
+
+   // Bind a popup to the marker
+    googleMarker.addListener('click', function() {
+      var infoWindow = new google.maps.InfoWindow({
+        content: '<h3>' + park_name + '</h3>'
+      });
+      infoWindow.open(map, googleMarker);
+    });
+  };
+
   // RENDER MAP
   // Render maps tutorial: https://www.youtube.com/watch?v=Zxf1mnP5zcw
   function initSearchMap() {
     // map options
-    var options = {
-      zoom: 4,
-      center: {lat: 40.7134, lng: -74.0055},
-    };
-    // New map
-    var map = new google.maps.Map(document.getElementById('searchMap'), options);
 
-    //   let mapsUrl = {
-    //     "async": true,
-    //     "url": 'http://localhost:3000/test',
-    //     qs: {
-    //       stateCode: stateCode,
-    //     },
-    //     "method": "GET",
-    // }
 
     // Listen for click on map
     google.maps.event.addListener(map, 'click', function(event){
@@ -161,34 +189,23 @@ let description;
       addMarker({coords:event.latLng});
     });
 
-    // let lat;
-    // let lng;
-    // $.ajax(mapsUrl)
-    // .done(function(data) {
-    //   console.log('maps data -->' + data.parks);
-    //   for (let i=0; i < data.data.length; i++) {
-    //     lat = data.data[i].lat;
-    //     lng = data.data[i].lng;
-    //   }
-    // })
+    // //array of markers
+    // var markers= [
+    // {
+    //   coords: {lat: 40.650002, lng: -73.949997},
+    //   //coords: `lat: ${latlong}, lng: ${variablename}`
+    //   content: '<h1>Brooklyn, NY</h1>'
+    // },
+    // {
+    //   coords: {lat: 32.8235, lng: -97.1706},
+    //   content: '<h1>Hurst, TX</h1>'
+    // }
+    // ];
 
-    // array of markers
-    var markers= [
-    {
-      coords: {lat: 40.650002, lng: -73.949997},
-      //coords: `lat: ${latlong}, lng: ${variablename}`
-      content: '<h1>Brooklyn, NY</h1>'
-    },
-    {
-      coords: {lat: 32.8235, lng: -97.1706},
-      content: '<h1>Hurst, TX</h1>'
-    }
-    ];
-
-    // loop through markers
-    for(var i=0;i<markers.length;i++){
-      addMarker(markers[i]);
-    };
+    // //loop through markers
+    // for(var i=0;i<markers.length;i++){
+    //   addMarker(markers[i]);
+    // };
 
     // Add marker function
     function addMarker(props) {
@@ -206,9 +223,15 @@ let description;
       });
       };
     };
+
   };
 
 initSearchMap();
-// getParks()
+
+//TO SAVE TO DB
+// <form action="" method="POST">
+// <input type="hidden" value="<%= markers.park_name %>" />
+// <button type="submit">Save</button>
+// </form>
 
 });

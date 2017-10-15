@@ -8,12 +8,13 @@ const writeFile = util.promisify(fs.writeFile);
 
 const tmpDir = fs.mkdtempSync(`${os.tmpdir()}${path.sep}`)
 
-async function getAllParks() {
+async function getAllParks(state) {
   try {
     const { data: parks } = await request({
       uri: 'https://developer.nps.gov/api/v0/parks',
       qs: {
         limit: 600,
+        stateCode: state
       },
       headers: {
         'User-Agent': 'bloop',
@@ -22,9 +23,11 @@ async function getAllParks() {
       json: true,
     });
 
-    await writeFile(path.join(tmpDir, 'allParks.json'), JSON.stringify({ parks }));
-    console.log('wrote file', path.join(tmpDir, 'allParks.json'));
     return parks;
+
+    // await writeFile(path.join(tmpDir, 'allParks.json'), JSON.stringify({ parks }));
+    // console.log('wrote file', path.join(tmpDir, 'allParks.json'));
+    // return parks;
   } catch (e) {
     console.log(e);
   }
@@ -39,9 +42,11 @@ function readParksFromFile() {
   }
 }
 
-function getParks() {
-  debugger;
-  return (readParksFromFile() || getAllParks()).map((park) => {
+async function getParks(state) {
+  // debugger;
+  let parks = await getAllParks(state);
+  console.log(parks)
+  return parks.map((park) => {
     const [foo, lat, lng] =  park.latLong ? park.latLong.match(/^lat:(.+),.+:(.+)$/) : [0,0,0];
     return {
       ...park,

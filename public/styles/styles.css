@@ -48,11 +48,19 @@ font-family: 'Pragati Narrow', sans-serif;*/
 }
 
 /*LANDING PAGE*/
+
 #backgroundHome {
+  height: 500px;
+  width: 500px;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 2s linear;
+}
+
+#timer {
   height: 100%;
   width: 100%;
   object-fit: contain;
-  background-image: url
 }
 
 #startButton {

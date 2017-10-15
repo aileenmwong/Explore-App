@@ -16,6 +16,7 @@ const path = require('path');
 const methodOverride = require('method-override');
 
 const parkService    = require('./services/mapsService');
+const Marker = require('./models/markers')
 
 //use middleware
 app.use(bodyParser.json());
@@ -29,6 +30,7 @@ app.get('/', function(req, res){
 
 //render search page
 app.get('/search', function(req, res){
+  console.log(res,'this is res in /search<---------')
   res.render('explore-search')
 });
 
@@ -47,6 +49,32 @@ app.use('/explore', markerRoutes);
 app.get('/test', (req, res) => {
   res.json(parkService.getParks());
 })
+
+// app.post('/result', async (req,res) => {
+//   let searchTerm = req.body.search.toLowerCase();
+//   let result = await parkService.getParks(searchTerm);
+//    console.log(res,'<-----res data back')
+//   let markers = result.map(element => {
+//     console.log(element.fullName,'element in the back ')
+//     console.log(element.lat,'element in the back ')
+//     console.log(element.lng,'element in the back ')
+//     console.log(element.states,' is this undefined element in the back ')
+//      return{
+//       lat: element.lat,
+//       lng: element.lng,
+//       state: element.states,
+//       description: element.description,
+//       park_name: element.fullName,
+//       weather: element.weatherInfo,
+//       website: element.url
+//     }
+//     console.log(element,'<----------')
+//   }).then(markers=>{
+//     console.log(element,'<----------')
+//   // res.json(newResult);
+//   res.json('./explore-search', { data: markers });
+// })
+//   })
 
 //set the views so ejs can be rendered
 app.set('views', path.join(__dirname, 'views'));
