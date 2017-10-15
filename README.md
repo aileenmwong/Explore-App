@@ -75,7 +75,7 @@ EJS and Javascript were very straightforward. I was having so much trouble getti
 ![Explore Home Wireframe](/public/assets/wireframe-home.png "Explore Home")
 
 ### MAP WIREFRAME ####
-![Explore Map Wireframe](/public/assets/wireframe-map.png "Explore Map")
+![Explore Map Wireframe](/public/assets/wireframe-mapview.png "Explore Map")
 
 ### SINGLE WIREFRAME ####
 ![Explore Single Wireframe](/public/assets/wireframe-single.png "Explore Single")
