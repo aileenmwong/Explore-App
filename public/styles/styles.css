@@ -10,6 +10,12 @@ img {
   height: 100%;
   object-fit: cover;
 }
+
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
 /*HEADER*/
 #headerWrapper {
   display: flex;
@@ -23,7 +29,7 @@ img {
 }
 
 #logoHeader {
-  font-family: 'Caveat Brush', cursive;
+  font-family: 'Questrial', sans-serif;
   text-transform: uppercase;
   font-size: 40px;
   margin-left: 30px;
@@ -55,19 +61,20 @@ img {
 }
 
 .navLinks:hover {
-  background-color: rgb(183,49,0);
+  background-color: rgb(102,178,102);
 }
 
 /*LANDING PAGE*/
 
 #backgroundHome {
-  object-fit: contain;
-  opacity: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   transition: opacity 2s linear;
   width: 100%;
-  height: auto;
   position: absolute;
   filter: opacity(.8);
+  margin-left: -50%;
 }
 
 #startButton {
@@ -88,7 +95,7 @@ img {
 
 #appName {
 /*  font-family: 'Gloria Hallelujah', cursive;*/
-  font-family: 'Caveat Brush', cursive;
+  font-family: 'Questrial', sans-serif;
   text-transform: uppercase;
   font-size: 150px;
   text-align: center;
@@ -102,10 +109,11 @@ img {
   height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #logoWrapper {
-  margin: 0 auto;
   position: relative;
   text-align: center;
   margin-top: 25%;
@@ -117,84 +125,165 @@ img {
 #submitField {
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
+  width: 50%;
 }
 
 #searchField {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 #searchResultsWrapper {
   display: flex;
 }
 
+#searchInputWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#searchQuestion {
+  font-family: 'Questrial', sans-serif;
+  text-align: center;
+  font-size: 30px;
+  margin: 30px;
+}
+
+#input {
+  width: 50%;
+  height: 30px;
+}
+
+#btnSearch {
+  width: 50%;
+  height: 30px;
+  margin-bottom: 30px;
+  background-color: rgb(102,178,102);
+}
 
 #searchMap {
-  height: 600px;
+  height: 500px;
   width: 100%;
-  border: 1px solid black;
-  position: fixed;
+  border: 1px solid lightgray;
 }
 
 #searchResults {
-  width: 48%;
-  margin: 2%;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .resultCont {
-  border: 1px solid black;
+  border: 1px solid lightgray;
   list-style: none;
+  padding: 10px;
+  margin: 2%;
 }
 
-.resultName {
-font-family: 'Questrial', sans-serif;
+.resultTop {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
-.resultAddress {
-font-family: 'Pragati Narrow', sans-serif;
-}
-
-.resultCity {
-font-family: 'Pragati Narrow', sans-serif;
-}
-
-.resultState {
-font-family: 'Pragati Narrow', sans-serif;
-}
-
-.resultCoords {
-font-family: 'Pragati Narrow', sans-serif;
+.resultTopText {
+  position: relative;
+  padding-left: 30px;
+  padding-top: 10px;
+  width: 70%;
 }
 
 .resultImageCont {
+  position: relative;
   width: 250px;
-  height: 250px;
-  border: 1px solid black;
+  height: 150px;
   object-fit: contain;
+  margin-bottom: 10px;
+  width: 30%;
 }
 
 .resultImage {
   height: auto;
   width: auto;
-  max-height: 250px;
-  max-width: 100%;
-  object-fit: scale-down;
+  height: 150px;
+  width: 250px;
+  object-fit: contain;
   overflow: hidden;
 }
 
+.resultName {
+  font-family: 'Questrial', sans-serif;
+  font-size: 24px;
+}
+
+.resultNameCont {
+  background-color: rgb(102,178,102);
+  width: 100%;
+}
+
+.resultDescriptionHeader {
+  font-family: 'Questrial', sans-serif;
+}
+
+.resultWeatherHeader {
+  font-family: 'Questrial', sans-serif;
+}
+
+.resultDirectionsHeader {
+  font-family: 'Questrial', sans-serif;
+}
+
+.resultHoursHeader {
+  font-family: 'Questrial', sans-serif;
+}
+
+.resultAddress {
+  font-family: 'Pragati Narrow', sans-serif;
+}
+
+.resultCity {
+  font-family: 'Pragati Narrow', sans-serif;
+}
+
+.resultState {
+  font-family: 'Pragati Narrow', sans-serif;
+}
+
+.resultCoords {
+  font-family: 'Pragati Narrow', sans-serif;
+}
+
 .resultDescription {
-font-family: 'Pragati Narrow', sans-serif;
+  font-family: 'Pragati Narrow', sans-serif;
+  margin-bottom: 10px;
+}
+
+.resultDirections {
+  font-family: 'Pragati Narrow', sans-serif;
+  margin-bottom: 10px;
+}
+
+.resultWeather {
+  font-family: 'Pragati Narrow', sans-serif;
+  margin-bottom: 10px;
+}
+
+.resultHours {
+  font-family: 'Pragati Narrow', sans-serif;
+  margin-bottom: 10px;
 }
 
 .resultWebsite {
-font-family: 'Pragati Narrow', sans-serif;
+  font-family: 'Pragati Narrow', sans-serif;
 }
 
-.websiteButton {
-font-family: 'Pragati Narrow', sans-serif;
+.saveButton {
+  font-family: 'Pragati Narrow', sans-serif;
 }
 
-#searchRsults {
+#searchResults {
 font-family: 'Pragati Narrow', sans-serif;
 }
 
@@ -204,7 +293,7 @@ font-family: 'Pragati Narrow', sans-serif;
 #map {
   height: 800px;
   width: 100%;
-  border: 1px solid black;
+  border: 1px solid lightgray;
 }
 
 #mapsHeader {
@@ -215,7 +304,7 @@ font-family: 'Pragati Narrow', sans-serif;
 }
 
 .exploreParkContainer {
-  border: 1px solid black;
+  border: 1px solid lightgray;
   display: flex;
   padding: 10px;
   width: 50%;
@@ -306,7 +395,6 @@ font-family: 'Pragati Narrow', sans-serif;
 /*SINGLE VIEW*/
 .singleWrapper {
   width: 100%;
-  border: 1px solid black;
   margin: 0 auto;
 }
 
@@ -331,7 +419,6 @@ font-family: 'Pragati Narrow', sans-serif;
   width: 100%;
   height: 500px;
   margin: 0 auto;
-
 }
 
 .singleContentWrapper {
@@ -360,7 +447,7 @@ font-family: 'Pragati Narrow', sans-serif;
 
 .singleAddressHeader {
   font-family: 'Questrial', sans-serif;
-  font-size: 24px;
+  font-size: 20px;
   margin-bottom: 5px;
 }
 
@@ -373,7 +460,7 @@ font-family: 'Pragati Narrow', sans-serif;
 
 .singleWebsiteHeader {
   font-family: 'Questrial', sans-serif;
-  font-size: 30px;
+  font-size: 24px;
   margin-bottom: 5px;
   padding-left: 3%;
   padding-right: 3%;
@@ -393,3 +480,90 @@ font-family: 'Pragati Narrow', sans-serif;
   padding-left: 3%;
   padding-right: 3%;
 }
+
+.singleDescriptionHeader {
+  font-family: 'Questrial', sans-serif;
+  font-size: 24px;
+  margin-bottom: 5px;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  width: 94%;
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+}
+.singleParkDescription {
+  font-family: 'Pragati Narrow', sans-serif;
+  font-size: 18px;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+.singleWeatherHeader {
+  font-family: 'Questrial', sans-serif;
+  font-size: 20px;
+  margin-bottom: 5px;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  width: 94%;
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+}
+
+.singleParkWeather {
+  font-family: 'Pragati Narrow', sans-serif;
+  font-size: 18px;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+.singleDirectionsHoursHeader {
+  font-family: 'Questrial', sans-serif;
+  font-size: 20px;
+  margin-bottom: 5px;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  width: 94%;
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+}
+
+.singleParkDirections {
+  font-family: 'Pragati Narrow', sans-serif;
+  font-size: 18px;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+
+}
+
+.singleParkHours {
+  font-family: 'Pragati Narrow', sans-serif;
+  font-size: 18px;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+
+}
+
+#singleDirectionsHoursBox {
+  width: 100%;
+}
+
+.singleHoursHeader {
+  font-family: 'Questrial', sans-serif;
+  font-size: 20px;
+  margin-left: 3%;
+}
+

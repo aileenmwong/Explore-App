@@ -30,7 +30,7 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
     let url = {
       "async": true,
       "crossDomain": true,
-      "url": `https://developer.nps.gov/api/v0/parks?stateCode=${stateCode}&fields=images,addresses`,
+      "url": `https://developer.nps.gov/api/v0/parks?limit=50&fields=images,addresses,entranceFees,operatingHours&q=${stateCode}`,
       "method": "GET",
       "headers": {
         "authorization": "B619A928-B3D8-4138-BDD4-B1C0CC6408C7",
@@ -44,14 +44,17 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
       console.log('the data is -->', data.data);
       for (let i=0; i < data.data.length; i++) {
       park_name = data.data[i].fullName;
-      // address = data.data[i].addresses[0].line1;
+      address = data.data[i].addresses[0].line1;
       city = data.data[i].addresses[0].city;
       park_state = data.data[i].addresses[0].stateCode;
       coordinates = data.data[i].latLong;
       image = data.data[i].images[0].url;
       website = data.data[i].url;
       description = data.data[i].description;
-      manipulateDom(park_name, address, city, park_state, coordinates, image, website, description);
+      weather = data.data[i].weatherInfo;
+      directions = data.data[i].directionsInfo;
+      hours = data.data[i].operatingHours[0].description;
+      manipulateDom(park_name, address, city, park_state, coordinates, image, website, description, weather, directions, hours);
       const [foo, lat, lng] = coordinates.match(/^lat:(.+),.+:(.+)$/)
       let cor = {
         ...coordinates,
@@ -89,48 +92,75 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
 
   // change the inner html of divs with appropriate data
   var manipulateDom = function(park_name, address, city, park_state, coordinates, image, website, description){
-      // console.log('this is the lat line 87 part2-->', + lat)
     //create a container to append the lis
     let $container = $('<ul>').attr('class', 'resultCont');
 
+    let top = $('<div>').attr('class', 'resultTop');
+    let topText = $('<div>').attr('class', 'resultTopText');
+
+    let parkNameCont = $('<div>').attr('class', 'resultNameCont');
     let parkName = $('<li>').attr('class', 'resultName').html(park_name);
     //append the location to the container
-    parkName.appendTo($container);
+    parkName.appendTo(parkNameCont);
+    parkNameCont.appendTo(topText);
 
     let parkAddress = $('<li>').attr('class', 'resultAddress').html(address);
     //append the address to the container
-    parkAddress.appendTo($container);
+    parkAddress.appendTo(topText);
 
     let parkCity = $('<li>').attr('class', 'resultCity').html(city);
     //append the city to the container
-    parkCity.appendTo($container);
+    parkCity.appendTo(topText);
 
     let parkState = $('<li>').attr('class', 'resultState').html(park_state);
     //append the state to the container
-    parkState.appendTo($container);
+    parkState.appendTo(topText);
 
     let parkCoords = $('<li>').attr('class', 'resultCoords').html(coordinates);
     //append the coordinates to the container
-    parkCoords.appendTo($container);
+    parkCoords.appendTo(topText);
 
     let parkImageCont = $('<div>').attr('class', 'resultImageCont')
     let parkImage = $('<li>').attr('class', 'resultImage').append(`<img src="${image}"/>`);
     parkImage.appendTo(parkImageCont)
     //append the image to the container
-    parkImageCont.appendTo($container);
+    parkImageCont.appendTo(top);
 
+    topText.appendTo(top);
+    top.appendTo($container);
+
+    let parkDescriptionHeader = $('<div>').attr('class', 'resultDescriptionHeader').html('Description');
     let parkDescription = $('<li>').attr('class', 'resultDescription').html(description);
     //append the description to the container
+    parkDescriptionHeader.appendTo($container);
     parkDescription.appendTo($container);
 
+    let parkWeatherHeader = $('<div>').attr('class', 'resultWeatherHeader').html('Weather');
+    let parkWeather = $('<li>').attr('class', 'resultWeather').html(weather);
+    //append the weather to the container
+    parkWeatherHeader.appendTo($container);
+    parkWeather.appendTo($container);
+
+    let parkDirectionsHeader = $('<div>').attr('class', 'resultDirectionsHeader').html('Directions');
+    let parkDirections = $('<li>').attr('class', 'resultDirections').html(directions);
+    //append the directions to the container
+    parkDirectionsHeader.appendTo($container);
+    parkDirections.appendTo($container);
+
+    let parkHoursHeader = $('<div>').attr('class', 'resultHoursHeader').html('Operating Hours');
+    let parkHours = $('<li>').attr('class', 'resultHours').html(hours);
+    //append the hours to the container
+    parkHoursHeader.appendTo($container);
+    parkHours.appendTo($container);
+
     let parkWebsite = $('<li>').attr('class', 'resultWebsite').html(website);
-    let websiteButton = $('<button>').attr('class', 'websiteButton').html('Go To Website');
     //append the website to the container
     $container.append(parkWebsite);
-    //append the button to the container
-    $container.append(websiteButton);
-    //wrap the button in the link
-    websiteButton.wrap('<a href="'+ website +'"></a>');
+    //wrap the link in a working link tag
+    parkWebsite.wrap('<a href="'+ website +'"></a>');
+
+    let saveResult = $('<button>').attr('class', 'saveButton').html('SAVE THIS PARK');
+    $container.append(saveResult);
 
     //append the container to the search results
     $('#searchResults').append($container);

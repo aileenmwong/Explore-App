@@ -20,5 +20,7 @@ CREATE TABLE IF NOT EXISTS parks (
   website VARCHAR(1000),
   description VARCHAR(1000),
   weather VARCHAR(1000),
+  directions VARCHAR(1000),
+  hours VARCHAR(1000),
   user_id INTEGER REFERENCES users
 );
