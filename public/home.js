@@ -9,7 +9,7 @@ $(function() {
     //variables
     $f = 1000,  // fade in/out speed
     $s = 1000,  // slide transition speed (for sliding carousel)
-    $d = 5000;  // duration per slide
+    $d = 3000;  // duration per slide
 
     $n = $('.slide').length; //number of slides
     $w = $('.slide').width(); // slide width

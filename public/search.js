@@ -200,6 +200,7 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
   searchButton.addEventListener('click', callNps);
 
   function addMarkerFromApi(cor) {
+
     // console.log('inside add marker from api')
     let lat = cor.lat;
     let lng = cor.lng
@@ -217,11 +218,12 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
    // Bind a popup to the marker
     googleMarker.addListener('click', function() {
       var infoWindow = new google.maps.InfoWindow({
-        content: park_name
+        content: '<h3>' + park_name + '</h3>'
       });
       infoWindow.open(map, googleMarker);
     });
   };
+
 
   // RENDER MAP
   function initSearchMap() {
