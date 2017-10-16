@@ -1,4 +1,4 @@
-\c explore_app
+-- \c explore_app
 
 INSERT INTO users (name, password) VALUES
 ('Aileen', 'password'),
