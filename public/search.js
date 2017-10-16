@@ -218,7 +218,7 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
    // Bind a popup to the marker
     googleMarker.addListener('click', function() {
       var infoWindow = new google.maps.InfoWindow({
-        content: '<h3>' + park_name + '</h3>'
+        content: '<h3>' + googleMarker.title + '</h3>'
       });
       infoWindow.open(map, googleMarker);
     });
