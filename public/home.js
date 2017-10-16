@@ -1,4 +1,4 @@
-//SLIDESHOW CODE MODIFIED FROM THIS CODEPEN
+//SLIDESHOW CAROUSEL CODE MODIFIED FROM THIS CODEPEN
 //https://codepen.io/andrewerrico/pen/emLMOV
 
 $(function() {

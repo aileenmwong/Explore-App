@@ -1,6 +1,7 @@
 $(document).ready(function() {
 console.log('search.js is connected!');
 
+// declare variables for data to populate from the api
 let park_name;
 let address;
 let city;
@@ -12,21 +13,26 @@ let description;
 let lat;
 let lng;
 
+// set the options of the map - zoom level and center
 var options = {
   zoom: 4,
   center: {lat: 39.8283, lng: -98.5795},
 };
-// New map
+
+// create a new map
 var map = new google.maps.Map(document.getElementById('searchMap'), options);
 
+// the callNps function makes the ajax call to get the data
   var callNps = function(event) {
     // event.preventDefault();
-    // the callNps function makes the ajax call to get the data
+    // let variable stateCode be set as whatever the user inputs
     let stateCode = document.querySelector('#input').value;
-    console.log(stateCode);
+    // console.log(stateCode);
+    // data is set as stateCode variable
     let data = {
       "stateCode": stateCode
     };
+    // let the url be set as the API call to the national parks service
     let url = {
       "async": true,
       "crossDomain": true,
@@ -39,6 +45,7 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
       }
     };
 
+    // when call is complete, declare all the variables as data from the api
     $.ajax(url)
     .done(function(data) {
       console.log('the data is -->', data.data);
@@ -54,17 +61,22 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
       weather = data.data[i].weatherInfo;
       directions = data.data[i].directionsInfo;
       hours = data.data[i].operatingHours[0].description;
+      // run dom manipulation for all variables
       manipulateDom(park_name, address, city, park_state, coordinates, image, website, description, weather, directions, hours);
+      // parse out the coordinates from the coordinates string using regex
       const [foo, lat, lng] = coordinates.match(/^lat:(.+),.+:(.+)$/)
+      // declare the coordinates from regex as an object
       let cor = {
         ...coordinates,
         lat: parseFloat(lat),
         lng: parseFloat(lng),
       }
+      // feed in the coordinates object to the addMarkerFromApi function to generate markers dynamically
       addMarkerFromApi(cor);
       };
 
     })
+    // if the api call fails, then return no data
     .fail(function(data) {
       console.log('failed getting park');
     });
@@ -75,72 +87,98 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
     //create a container to append the lis
     let $container = $('<ul>').attr('class', 'resultCont');
 
+    // create a top div to attach photo, name, address, city, state, coordinates
     let top = $('<div>').attr('class', 'resultTop');
+    // separate the text into it's own div within the top div
     let topText = $('<div>').attr('class', 'resultTopText');
 
+    // add a div to incorporate styling to the park name
     let parkNameCont = $('<div>').attr('class', 'resultNameCont');
+    // set parkName to a li
     let parkName = $('<li>').attr('class', 'resultName').html(park_name);
-    //append the location to the container
+    // append the name to the parkName container
     parkName.appendTo(parkNameCont);
+    // append the parkName container to the top text div
     parkNameCont.appendTo(topText);
 
+    // set parkAddress as an li
     let parkAddress = $('<li>').attr('class', 'resultAddress').html(address);
-    //append the address to the container
+    //append the address to the top text div
     parkAddress.appendTo(topText);
 
+    // set parkcity as an li
     let parkCity = $('<li>').attr('class', 'resultCity').html(city);
-    //append the city to the container
+    //append the city to the top text div
     parkCity.appendTo(topText);
 
+    // set parkState as an li
     let parkState = $('<li>').attr('class', 'resultState').html(park_state);
-    //append the state to the container
+    //append the state to the top text div
     parkState.appendTo(topText);
 
+    // set parkCoords as an li
     let parkCoords = $('<li>').attr('class', 'resultCoords').html(coordinates);
-    //append the coordinates to the container
+    //append the coordinates to the top text div
     parkCoords.appendTo(topText);
 
+    // set park image container
     let parkImageCont = $('<div>').attr('class', 'resultImageCont')
+    // set the image to an li
     let parkImage = $('<li>').attr('class', 'resultImage').append(`<img src="${image}"/>`);
+    // append the image to the parkImage conatiner
     parkImage.appendTo(parkImageCont)
-    //append the image to the container
+    // append the park image container to the top container
     parkImageCont.appendTo(top);
 
+    // append the text to the top container
     topText.appendTo(top);
+    // append the top container to the entire container
     top.appendTo($container);
 
+    // create a header for the description
     let parkDescriptionHeader = $('<div>').attr('class', 'resultDescriptionHeader').html('Description');
+    // create an li and attach the park description
     let parkDescription = $('<li>').attr('class', 'resultDescription').html(description);
-    //append the description to the container
+    // append the description to the container
+    parkDescription.appendTo(parkDescriptionHeader);
     parkDescriptionHeader.appendTo($container);
-    parkDescription.appendTo($container);
 
+    // create a header for the weather
     let parkWeatherHeader = $('<div>').attr('class', 'resultWeatherHeader').html('Weather');
+    // create an li and attach the park weather
     let parkWeather = $('<li>').attr('class', 'resultWeather').html(weather);
-    //append the weather to the container
+    // append the weather to the container
+    parkWeather.appendTo(parkWeatherHeader);
     parkWeatherHeader.appendTo($container);
-    parkWeather.appendTo($container);
 
+    // create a header for the directions
     let parkDirectionsHeader = $('<div>').attr('class', 'resultDirectionsHeader').html('Directions');
+    // create an li and attach the park directions
     let parkDirections = $('<li>').attr('class', 'resultDirections').html(directions);
     //append the directions to the container
+    parkDirections.appendTo(parkDirectionsHeader);
     parkDirectionsHeader.appendTo($container);
-    parkDirections.appendTo($container);
 
+    // create a header for the operating hours
     let parkHoursHeader = $('<div>').attr('class', 'resultHoursHeader').html('Operating Hours');
+    // create an li and attach the operating hours
     let parkHours = $('<li>').attr('class', 'resultHours').html(hours);
-    //append the hours to the container
+    // append the hours to the container
+    parkHours.appendTo(parkHoursHeader);
     parkHoursHeader.appendTo($container);
-    parkHours.appendTo($container);
 
+    // create an li for the website
     let parkWebsite = $('<li>').attr('class', 'resultWebsite').html(website);
     //append the website to the container
     $container.append(parkWebsite);
     //wrap the link in a working link tag
     parkWebsite.wrap('<a href="'+ website +'"></a>');
 
+    // create a save button
     let saveResult = $('<button>').attr({class: 'saveButton', type: 'submit'}).html('SAVE THIS PARK');
+    // append the save button to the container
     $container.append(saveResult);
+
 
     // let saveInput = $('<input>').attr({type:'hidden', value: "<%= markers.park_name %>", class: 'saveButton'})
     // let saveResult = $('<button>').attr({class: 'saveButton', type: 'submit'}).html('SAVE THIS PARK');
@@ -153,7 +191,7 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
     // <button type="submit">Save</button>
     // </form>
 
-    //append the container to the search results
+    // append the container to the search results
     $('#searchResults').append($container);
   };
 
@@ -162,19 +200,19 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
   searchButton.addEventListener('click', callNps);
 
   function addMarkerFromApi(cor) {
-    console.log('inside add marker from api')
+    // console.log('inside add marker from api')
     let lat = cor.lat;
     let lng = cor.lng
     var position = new google.maps.LatLng(lat, lng);
-    console.log('position lat -->', lat)
-    console.log('position lng -->', lng)
+    // console.log('position lat -->', lat)
+    // console.log('position lng -->', lng)
     // console.log(position);
     var googleMarker = new google.maps.Marker({
       position: position,
       title: park_name,
       map: map
     });
-    console.log(googleMarker);
+    // console.log(googleMarker);
 
    // Bind a popup to the marker
     googleMarker.addListener('click', function() {
@@ -186,7 +224,6 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
   };
 
   // RENDER MAP
-  // Render maps tutorial: https://www.youtube.com/watch?v=Zxf1mnP5zcw
   function initSearchMap() {
     event.preventDefault();
     // Listen for click on map
@@ -212,7 +249,7 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
       };
     };
   };
-
+// initialize the map
 initSearchMap();
 
 });

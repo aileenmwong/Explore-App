@@ -1,13 +1,16 @@
-$(document).ready(function() {
+window.onload = (function() {
 console.log('map.js is connected!');
-function initMap() {
 
-  // map options
+function initMap() {
+  // Google Maps Javascript Tutorial from Documentation
+  // https://developers.google.com/maps/documentation/javascript/tutorial
+
+  // map options - set zoom level and center of the map
   var options = {
     zoom: 5,
     center: {lat: 39.8283, lng: -98.5795},
   }
-  // New map
+  // initialize a new map
   var map = new google.maps.Map(document.getElementById('map'), options);
 
   //Listen for click on map
@@ -16,13 +19,15 @@ function initMap() {
     addMarker({coords:event.latLng});
   });
 
-//FOLLOWED THESE CLASS NOTES FROM ANOTHER WDI CLASS
+//FOLLOWED THESE CLASS NOTES FROM ANOTHER WDI CLASS TO ADD MARKER
 //https://wdi_sea.gitbooks.io/notes/content/05-express/additional-topics/express-geocode/readme.html
 
   // for each marker passed through, add it to the map with a popup
   markers.forEach(function(marker) {
-    console.log(marker);
+    // console.log(marker);
+    // set the position of the latitude and the longitude from the db
     var position = new google.maps.LatLng(marker.lat, marker.lng);
+    // create a new marker object
     var googleMarker = new google.maps.Marker({
       position: position,
       title: marker.name,
@@ -30,19 +35,20 @@ function initMap() {
     })
 
 
-   // Bind a popup to the marker
+   // Bind a popup to the marker on click
     googleMarker.addListener('click', function() {
       var infoWindow = new google.maps.InfoWindow({
         content: '<h3>' + marker.park_name + '</h3>'
       });
+      // when the window opens, display the map and the markers
       infoWindow.open(map, googleMarker);
     });
-      });
-
+  });
 }
+// initialize the map
 initMap();
-// RENDER MAP
-// Render maps tutorial: https://www.youtube.com/watch?v=Zxf1mnP5zcw
+
+// RENDER MAP FROM SERVER SIDE - not working yet
 
 // function initMap() {
 
@@ -56,10 +62,9 @@ initMap();
 
   // let mapsUrl = {
   //   "async": true,
-  //   "url": 'http://localhost:3000/explore0',
+  //   "url": 'http://localhost:3000/explore',
   //   "method": "GET",
   // }
-
 
   // //Listen for click on map
   // google.maps.event.addListener(map, 'click', function(event){
@@ -127,23 +132,5 @@ initMap();
 //   }
 // }
 // initMap();
-
-// var INTERVAL = 2000;
-
-// function getMarkers() {
-//     axios.get('/explore', {}, function(res,resp) {
-//         for(let res of resp) {
-
-//         let marker = new google.maps.Marker({
-//           let splitCoords = res[i].split(" ");
-//           let finalCoords = parseFloat(splitCoords);
-//                 position: new google.maps.LatLng(res[i].finalCoords[0],res[i].finalCoords[1]),
-//                 content: res[i].park_name,
-//                 map: map
-//             });
-//         }
-//         window.setTimeout(getMarkers, INTERVAL);
-//     }, "json");
-// }
 
 });
