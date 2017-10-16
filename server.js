@@ -5,6 +5,9 @@ const express = require('express');
 // declare app as express
 const app = express();
 const logger = require('morgan');
+const cors = require('cors');
+
+// app.use(cors())
 app.use(logger('dev'));
 
 //MIDDLEWARE

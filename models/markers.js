@@ -46,26 +46,26 @@ Marker.findById = (id) => {
 };
 
 //this is the function that selects one park by user
-Marker.createByUser = parks => {
-  parks.user_id = Number.parseInt(parks.user_id, 10)
-  console.log(parks.user_id)
-  return db.one(
-    `
-    INSERT INTO parks
-    (park_name, address, city, state, coordinates, image, website, description, user_id)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
-    RETURNING *
-    `, [parks.park_name, parks.address, parks.city, parks.state, parks.coordinates, parks.image, parks.website, parks. description, parks.user_id]
-    );
-};
+// Marker.createByUser = parks => {
+//   parks.user_id = Number.parseInt(parks.user_id, 10)
+//   console.log(parks.user_id)
+//   return db.one(
+//     `
+//     INSERT INTO parks
+//     (park_name, address, city, state, coordinates, image, website, description, user_id)
+//     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+//     RETURNING *
+//     `, [parks.park_name, parks.address, parks.city, parks.state, parks.coordinates, parks.image, parks.website, parks. description, parks.user_id]
+//     );
+// };
 
 //this is the function that selects one park by user
 Marker.create = parks => {
   return db.one(
     `
     INSERT INTO parks
-    (park_name, address, city, state, coordinates, image, website, description)
-    VALUES ($/park_name/, $/address/, $/city/, $/state/, $/coordinates/, $/image/, $/website/, $/description/)
+    (park_name, address, city, state, coordinates, lat, lng, image, website, description, weather, directions, hours)
+    VALUES ($/park_name/, $/address/, $/city/, $/state/, $/coordinates/, $/lat/, $/lng/, $/image/, $/website/, $/description/, $/weather/, $/directions/, $/hours/)
     RETURNING *
     `, parks
     );
