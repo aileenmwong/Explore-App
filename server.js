@@ -46,8 +46,8 @@ app.get('/search', function(req, res){
 const markerRoutes = require('./routes/marker-routes');
 app.use('/explore', markerRoutes);
 
-const apiRoutes = require('./routes/api-routes')
-app.use('/apiroute', apiRoutes);
+// const apiRoutes = require('./routes/api-routes')
+// app.use('/apiroute', apiRoutes);
 
 // app.get('/test', (req, res) => {
 //   res.json(parkService.getParks());
