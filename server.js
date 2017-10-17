@@ -18,7 +18,7 @@ const path = require('path');
 //require Method OVerride
 const methodOverride = require('method-override');
 
-const parkService    = require('./services/mapsService');
+// const parkService    = require('./services/mapsService');
 const Marker = require('./models/markers')
 
 //use middleware
@@ -46,12 +46,12 @@ app.get('/search', function(req, res){
 const markerRoutes = require('./routes/marker-routes');
 app.use('/explore', markerRoutes);
 
-// const apiRoutes = require('./routes/api-routes')
-// app.use('/apiroute', apiRoutes);
+const apiRoutes = require('./routes/api-routes')
+app.use('/apiroute', apiRoutes);
 
-app.get('/test', (req, res) => {
-  res.json(parkService.getParks());
-})
+// app.get('/test', (req, res) => {
+//   res.json(parkService.getParks());
+// })
 
 // app.post('/result', async (req,res) => {
 //   let searchTerm = req.body.search.toLowerCase();

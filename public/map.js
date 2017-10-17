@@ -19,6 +19,29 @@ function initMap() {
     addMarker({coords:event.latLng});
   });
 
+  // Add marker function
+  for(var i=0;i<markers.length;i++){
+    addMarker(markers[i]);
+  }
+
+  // Add marker function
+  function addMarker(props) {
+    var marker = new google.maps.Marker({
+      position: props.coords,
+      map: map,
+    });
+    //check for content
+    if (props.content){
+      var infoWindow = new google.maps.InfoWindow({
+      content: props.content
+    });
+
+    marker.addListener('click', function() {
+      infoWindow.open(map, marker);
+    });
+    }
+  }
+
 //FOLLOWED THESE CLASS NOTES FROM ANOTHER WDI CLASS TO ADD MARKER
 //https://wdi_sea.gitbooks.io/notes/content/05-express/additional-topics/express-geocode/readme.html
 

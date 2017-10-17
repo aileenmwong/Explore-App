@@ -7,7 +7,7 @@ const markerController = require('../controllers/marker-controller');
 
 // require helper functions
 const mapService = require('../services/maps-service');
-const npsService = require('../services/nps-service');
+const npsService = require('../services/npsService');
 
 // // get the search page from the controller
 // markerRoutes.get('/search', markerController.search);

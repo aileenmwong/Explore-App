@@ -1,27 +1,32 @@
-$(document).ready(function() {
-console.log('search.js is connected!');
+//require isomorphic-fetch
+require('isomorphic-fetch');
+//require dotenv to hide keys
+require('dotenv').env;
 
-// declare variables for data to populate from the api
-//let SUPER_SECRET_NPS = process.env.SUPER_SECRET_NPS;
-let park_name;
-let address;
-let city;
-let park_state;
-let coordinates;
-let image;
-let website;
-let description;
-let lat;
-let lng;
+//declare a function of getSearchResults with req, res, and next as parameters
+function getNpsResults(req, res, next) {
+  //declare variables for search terms in the API key
+  const CLIENT_ID_NPS = process.env.SUPER_SECRET_NPS;
+  console.log(CLIENT_ID_NPS,'hhhhhhheeeeeerrrrrreeeeee ')
+  let park_name;
+  let address;
+  let city;
+  let park_state;
+  let coordinates;
+  let image;
+  let website;
+  let description;
+  let lat;
+  let lng;
 
-// set the options of the map - zoom level and center
-var options = {
-  zoom: 4,
-  center: {lat: 39.8283, lng: -98.5795},
-};
+//   // set the options of the map - zoom level and center
+//   var options = {
+//     zoom: 4,
+//     center: {lat: 39.8283, lng: -98.5795},
+//   };
 
-// create a new map
-var map = new google.maps.Map(document.getElementById('searchMap'), options);
+// // create a new map
+// var map = new google.maps.Map(document.getElementById('searchMap'), options);
 
 // the callNps function makes the ajax call to get the data
   var callNps = function(event) {
@@ -34,21 +39,19 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
       "stateCode": stateCode
     };
     // let the url be set as the API call to the national parks service
-    let url = `https://developer.nps.gov/api/v1/parks?limit=50&fields=images,addresses,entranceFees,operatingHours&q=${stateCode}&api_key=pFMMyIQXa3mMgr0WZSFrUytKQnGTPuMSKkRmkxcl`
-      // crossDomain: true,
-      // url: `https://developer.nps.gov/api/v0/parks?limit=50&fields=images,addresses,entranceFees,operatingHours&q=${stateCode}`,
-      // url: `https://developer.nps.gov/api/v1/parks?limit=50&fields=images,addresses,entranceFees,operatingHours&q=${stateCode}&api_key=pFMMyIQXa3mMgr0WZSFrUytKQnGTPuMSKkRmkxcl`,
-      // method: 'GET',
-      // mode:'cors',
-      // headers: {
-      //   authorization: 'B619A928-B3D8-4138-BDD4-B1C0CC6408C7',
-      //   Accept: 'application/json'
-      // }
-    // };
-              // "Access-Control-Allow-Origin": "*"
-           // "cache-control": "no-cache",
-        // "postman-token": "6f542f13-6d93-a6db-26c0-727dce301262"
-
+    let url = {
+      crossDomain: true,
+      url: `https://developer.nps.gov/api/v0/parks?limit=50&fields=images,addresses,entranceFees,operatingHours&q=${stateCode}`,
+      method: 'GET',
+      mode:'cors',
+      headers: {
+        authorization: CLIENT_ID_NPS,
+        Accept: 'application/json'
+      }
+    };
+    // "Access-Control-Allow-Origin": "*"
+    // "cache-control": "no-cache",
+    // "postman-token": "6f542f13-6d93-a6db-26c0-727dce301262"
     // when call is complete, declare all the variables as data from the api
     $.ajax(url)
     .done(function(data) {
@@ -81,7 +84,6 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
       // feed in the coordinates object to the addMarkerFromApi function to generate markers dynamically
       addMarkerFromApi(cor);
       };
-
     })
     // if the api call fails, then return no data
     .fail(function(data) {
@@ -90,100 +92,102 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
   };
 
   // change the inner html of divs with appropriate data
-  var manipulateDom = function(park_name, address, city, park_state, coordinates, image, website, description){
+  var manipulateDom = function(park_name, address, city, park_state, coordinates, image, website, description, weather, directions, hours) {
+
     //create a container to append the lis
     let $container = $('<ul>').attr('class', 'resultCont');
 
     // create a top div to attach photo, name, address, city, state, coordinates
-    let top = $('<div>').attr('class', 'resultTop');
     // separate the text into it's own div within the top div
+    let top = $('<div>').attr('class', 'resultTop');
     let topText = $('<div>').attr('class', 'resultTopText');
 
     // add a div to incorporate styling to the park name
-    let parkNameCont = $('<div>').attr('class', 'resultNameCont');
     // set parkName to a li
-    let parkName = $('<li>').attr('class', 'resultName').html(park_name);
     // append the name to the parkName container
-    parkName.appendTo(parkNameCont);
     // append the parkName container to the top text div
+    let parkNameCont = $('<div>').attr('class', 'resultNameCont');
+    let parkName = $('<li>').attr('class', 'resultName').html(park_name);
+    parkName.appendTo(parkNameCont);
     parkNameCont.appendTo(topText);
 
     // set parkAddress as an li
+    // append the address to the top text div
     let parkAddress = $('<li>').attr('class', 'resultAddress').html(address);
-    //append the address to the top text div
     parkAddress.appendTo(topText);
 
     // set parkcity as an li
+    // append the city to the top text div
     let parkCity = $('<li>').attr('class', 'resultCity').html(city);
-    //append the city to the top text div
+
     parkCity.appendTo(topText);
 
     // set parkState as an li
+    // append the state to the top text div
     let parkState = $('<li>').attr('class', 'resultState').html(park_state);
-    //append the state to the top text div
     parkState.appendTo(topText);
 
     // set parkCoords as an li
+    // append the coordinates to the top text div
     let parkCoords = $('<li>').attr('class', 'resultCoords').html(coordinates);
-    //append the coordinates to the top text div
     parkCoords.appendTo(topText);
 
     // set park image container
-    let parkImageCont = $('<div>').attr('class', 'resultImageCont')
     // set the image to an li
-    let parkImage = $('<li>').attr('class', 'resultImage').append(`<img src="${image}"/>`);
     // append the image to the parkImage conatiner
-    parkImage.appendTo(parkImageCont)
     // append the park image container to the top container
+    let parkImageCont = $('<div>').attr('class', 'resultImageCont');
+    let parkImage = $('<li>').attr('class', 'resultImage').append(`<img src="${image}"/>`);
+    parkImage.appendTo(parkImageCont);
     parkImageCont.appendTo(top);
 
     // append the text to the top container
-    topText.appendTo(top);
     // append the top container to the entire container
+    topText.appendTo(top);
     top.appendTo($container);
 
     // create a header for the description
-    let parkDescriptionHeader = $('<div>').attr('class', 'resultDescriptionHeader').html('Description');
     // create an li and attach the park description
-    let parkDescription = $('<li>').attr('class', 'resultDescription').html(description);
     // append the description to the container
+    let parkDescriptionHeader = $('<div>').attr('class', 'resultDescriptionHeader').html('Description');
+    let parkDescription = $('<li>').attr('class', 'resultDescription').html(description);
     parkDescription.appendTo(parkDescriptionHeader);
     parkDescriptionHeader.appendTo($container);
 
     // create a header for the weather
-    let parkWeatherHeader = $('<div>').attr('class', 'resultWeatherHeader').html('Weather');
     // create an li and attach the park weather
-    let parkWeather = $('<li>').attr('class', 'resultWeather').html(weather);
     // append the weather to the container
+    let parkWeatherHeader = $('<div>').attr('class', 'resultWeatherHeader').html('Weather');
+    let parkWeather = $('<li>').attr('class', 'resultWeather').html(weather);
     parkWeather.appendTo(parkWeatherHeader);
     parkWeatherHeader.appendTo($container);
 
     // create a header for the directions
-    let parkDirectionsHeader = $('<div>').attr('class', 'resultDirectionsHeader').html('Directions');
     // create an li and attach the park directions
-    let parkDirections = $('<li>').attr('class', 'resultDirections').html(directions);
     //append the directions to the container
+    let parkDirectionsHeader = $('<div>').attr('class', 'resultDirectionsHeader').html('Directions');
+    let parkDirections = $('<li>').attr('class', 'resultDirections').html(directions);
     parkDirections.appendTo(parkDirectionsHeader);
     parkDirectionsHeader.appendTo($container);
 
     // create a header for the operating hours
-    let parkHoursHeader = $('<div>').attr('class', 'resultHoursHeader').html('Operating Hours');
     // create an li and attach the operating hours
-    let parkHours = $('<li>').attr('class', 'resultHours').html(hours);
     // append the hours to the container
+    let parkHoursHeader = $('<div>').attr('class', 'resultHoursHeader').html('Operating Hours');
+    let parkHours = $('<li>').attr('class', 'resultHours').html(hours);
     parkHours.appendTo(parkHoursHeader);
     parkHoursHeader.appendTo($container);
 
     // create an li for the website
+    // append the website to the container
+    // wrap the link in a working link tag
     let parkWebsite = $('<li>').attr('class', 'resultWebsite').html(website);
-    //append the website to the container
     $container.append(parkWebsite);
-    //wrap the link in a working link tag
     parkWebsite.wrap('<a href="'+ website +'"></a>');
 
     // create a save button
-    let saveResult = $('<button>').attr({class: 'saveButton', type: 'submit'}).html('SAVE THIS PARK');
     // append the save button to the container
+    let saveResult = $('<button>').attr({class: 'saveButton', type: 'submit'}).html('SAVE THIS PARK');
     $container.append(saveResult);
 
 
@@ -261,5 +265,25 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
 // initialize the map
 initSearchMap();
 
-});
+//   //fetch the api
+//   fetch(`https://api.foursquare.com/v2/venues/search?near=${req.body.locationSearch}+&query=${req.body.food}+&limit=10&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=20170831`)
+//   //use then promise to fetch response
+//   .then((fetchRes) => {
+//     console.log('the data back from API call ->', fetchRes);
+//     //return the data
+//     return fetchRes.json();
+//     // use
+//   }).then((jsonFetchRes) => {
+//     console.log(jsonFetchRes);
+//     res.json(jsonFetchRes);
+//   }).catch((err) => {
+//     console.log(err);
+//     res.status(500).json({"data":"didn't find anything"})
+//   });
 
+}
+
+//export the helper file
+module.exports = {
+  getNpsResults: getNpsResults,
+}

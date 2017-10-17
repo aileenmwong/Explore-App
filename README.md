@@ -4,7 +4,7 @@
 
 Explore is an app for adventurers to search for national parks to visit. Explore uses the National Parks System API and allows users to create a digital map pinboard. Users can search by activity, state or park name to find parks they would like to visit and save them to their map. Explore will add a pin to their map based on latitude and longitude of the park. Users can see which parks are close together so they can create their own roadtrip through the parks system. 
 
-[Go to Explore](#)
+[Go to Explore](https://git.generalassemb.ly/aileenmwong/Explore-App)
 
 ## Technologies Used ###
 
