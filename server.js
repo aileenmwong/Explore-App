@@ -33,7 +33,7 @@ app.get('/', function(req, res){
 
 //render search page
 app.get('/search', function(req, res){
-  console.log(res,'this is res in /search<---------')
+  // console.log(res,'this is res in /search<---------')
   res.render('explore-search')
 });
 

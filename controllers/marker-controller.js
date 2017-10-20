@@ -12,12 +12,12 @@ markerController.index = (req, res) => {
     //   data: markers,
     // })
     .then(markers => {
-      console.log(markers);
+      // console.log(markers);
       res.render('./explore-map', {
         data: markers,
       })
     }).catch(err => {
-      console.log(err);
+      // console.log(err);
       res.status(500).json(err);
     });
 };
@@ -54,15 +54,35 @@ markerController.show = (req, res) => {
         data: marker,
       });
     }).catch(err => {
-      console.log(err);
+      // console.log(err);
       res.status(500).json(err);
     });
 }
 
 //posts an item to the db
 markerController.create = (req, res) => {
-  Marker.create(req.body)
-    .then (markers => {
+  console.log(req.body)
+
+  const { park_name, address, city, state, image, website, description, weather, directions, hours, coordinates, lat, lng } = req.body
+
+    let park = {
+        park_name,
+        address,
+        city,
+        state,
+        image,
+        website,
+        description,
+        weather,
+        directions,
+        hours,
+        coordinates,
+        lat: parseFloat(coordinates.match(/^lat:(.+),.+:(.+)$/)[1]),
+        lng: parseFloat(coordinates.match(/^lat:(.+),.+:(.+)$/)[2])
+      }
+
+  Marker.create(park)
+    .then(markers => {
       res.redirect('/explore');
       })
     .catch (err => {
@@ -90,7 +110,7 @@ markerController.delete = (req, res) => {
     res.redirect('/explore');
     })
   .catch(err => {
-    console.log(err);
+    // console.log(err);
     res.status(500).json(err);
   });
 };

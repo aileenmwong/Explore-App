@@ -25,7 +25,7 @@ markerRoutes.get('/', markerController.index);
 // markerRoutes.get('/map', markerController.index);
 
 //get the create frunction from the controller
-markerRoutes.post('/:park_name', markerController.create);
+markerRoutes.post('/new', markerController.create);
 
 // export the router
 module.exports = markerRoutes;

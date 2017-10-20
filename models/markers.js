@@ -61,6 +61,7 @@ Marker.findById = (id) => {
 
 //this is the function that selects one park by user
 Marker.create = parks => {
+  console.log('inside of create function')
   return db.one(
     `
     INSERT INTO parks

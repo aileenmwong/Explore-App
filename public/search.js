@@ -13,6 +13,9 @@ let website;
 let description;
 let lat;
 let lng;
+let weather;
+let directions;
+let hours;
 
 // set the options of the map - zoom level and center
 var options = {
@@ -69,15 +72,15 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
       // run dom manipulation for all variables
       // manipulateDom(park_name, coordinates, website, description, weather, directions);
       manipulateDom(park_name, address, city, park_state, coordinates, image, website, description, weather, directions, hours);
-
+       let container = document.querySelectorAll('.resultCont');
       // parse out the coordinates from the coordinates string using regex
       const [foo, lat, lng] = coordinates.match(/^lat:(.+),.+:(.+)$/)
       // declare the coordinates from regex as an object
       let cor = {
-        ...coordinates,
-        lat: parseFloat(lat),
-        lng: parseFloat(lng),
+        ...coordinates
       }
+      cor.lat = parseFloat(lat);
+      cor.lng = parseFloat(lng);
       // feed in the coordinates object to the addMarkerFromApi function to generate markers dynamically
       addMarkerFromApi(cor);
       };
@@ -91,7 +94,8 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
 
   // change the inner html of divs with appropriate data
   var manipulateDom = function(park_name, address, city, park_state, coordinates, image, website, description){
-    //create a container to append the lis
+    //create a container to append the list
+    let wrappedDiv = $('<div>').attr('class', 'wrappedDiv');
     let $container = $('<ul>').attr('class', 'resultCont');
 
     // create a top div to attach photo, name, address, city, state, coordinates
@@ -181,15 +185,43 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
     //wrap the link in a working link tag
     parkWebsite.wrap('<a href="'+ website +'"></a>');
 
-    // create a save button
-    let saveResult = $('<button>').attr({class: 'saveButton', type: 'submit'}).html('SAVE THIS PARK');
-    // append the save button to the container
+    // // create a save button
+    // let saveResult = $('<button>').attr({class: 'saveButton', type: 'submit'}).html('SAVE THIS PARK');
+    // // append the save button to the container
+    // $container.append(saveResult);
+
+
+    let saveInput = $('<input>').attr({type:'hidden', value:'<%= markers.park_name %>', class:'saveButton'})
+    let saveResult = $('<button>').attr({class:'saveButton'}).html('SAVE THIS PARK')
+    .on('click', function(){
+      let park = {
+        park_name,
+        address,
+        city,
+        state: park_state,
+        image,
+        website,
+        description,
+        weather,
+        directions,
+        hours,
+        coordinates,
+        lat: parseFloat(coordinates.match(/^lat:(.+),.+:(.+)$/)[1]),
+        lng: parseFloat(coordinates.match(/^lat:(.+),.+:(.+)$/)[2])
+      }
+
+      const URL = '/explore/new';
+
+      $.post(URL, park, function(data, status){
+        console.log(data)
+        console.log(status)
+      })
+
+
+    })
+
     $container.append(saveResult);
-
-
-    // let saveInput = $('<input>').attr({type:'hidden', value: "<%= markers.park_name %>", class: 'saveButton'})
-    // let saveResult = $('<button>').attr({type:'submit', class:'saveButton'}).html('SAVE THIS PARK');
-    // let wrappedForm = $('.saveButton').wrapAll('<form action="" method="POST"></form>')
+    $container.append(saveInput);
     // $container.append(wrappedForm);
 
     // TO SAVE TO DB
@@ -199,8 +231,23 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
     // </form>
 
     // append the container to the search results
-    $('#searchResults').append($container);
+    wrappedDiv.append($container);
+    $('#searchResults').append(wrappedDiv);
+
+    // let saveThisPark = document.querySelectorAll('.saveButton');
+    //   saveThisPark.forEach(element => {
+    //     element.addEventListener('click', function(){
+    //       console.log(this)
+    //     })
+    //   })
+
   };
+
+
+
+
+
+
 
   let searchButton = document.querySelector('#btnSearch');
   //add event listener to the submit button and call Api function
