@@ -7,7 +7,7 @@ const app = express();
 const logger = require('morgan');
 const cors = require('cors');
 
-// app.use(cors())
+app.use(cors());
 app.use(logger('dev'));
 
 //MIDDLEWARE
@@ -17,6 +17,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 //require Method OVerride
 const methodOverride = require('method-override');
+
 
 // const parkService    = require('./services/mapsService');
 const Marker = require('./models/markers')
