@@ -9,9 +9,6 @@ const markerController = require('../controllers/marker-controller');
 const mapService = require('../services/maps-service');
 const npsService = require('../services/npsService');
 
-// // get the search page from the controller
-// markerRoutes.get('/search', markerController.search);
-
 // get the single page from the controller
 markerRoutes.get('/:id', markerController.show);
 
@@ -20,9 +17,6 @@ markerRoutes.delete('/:id', markerController.delete);
 
 //get the map page from the controller
 markerRoutes.get('/', markerController.index);
-
-// //get the map page from the controller
-// markerRoutes.get('/map', markerController.index);
 
 //get the create frunction from the controller
 markerRoutes.post('/new', markerController.create);

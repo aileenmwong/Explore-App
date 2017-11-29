@@ -1,8 +1,6 @@
 $(document).ready(function() {
-console.log('search.js is connected!');
 
 // declare variables for data to populate from the api
-//let SUPER_SECRET_NPS = process.env.SUPER_SECRET_NPS;
 let park_name;
 let address;
 let city;
@@ -28,29 +26,14 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
 
 // the callNps function makes the ajax call to get the data
   var callNps = function(event) {
-    // event.preventDefault();
     // let variable stateCode be set as whatever the user inputs
     let stateCode = document.querySelector('#input').value;
-    // console.log(stateCode);
     // data is set as stateCode variable
     let data = {
       "stateCode": stateCode
     };
     // let the url be set as the API call to the national parks service
     let url = `https://developer.nps.gov/api/v1/parks?limit=50&fields=images,addresses,entranceFees,operatingHours&q=${stateCode}&api_key=pFMMyIQXa3mMgr0WZSFrUytKQnGTPuMSKkRmkxcl`
-      // crossDomain: true,
-      // url: `https://developer.nps.gov/api/v0/parks?limit=50&fields=images,addresses,entranceFees,operatingHours&q=${stateCode}`,
-      // url: `https://developer.nps.gov/api/v1/parks?limit=50&fields=images,addresses,entranceFees,operatingHours&q=${stateCode}&api_key=pFMMyIQXa3mMgr0WZSFrUytKQnGTPuMSKkRmkxcl`,
-      // method: 'GET',
-      // mode:'cors',
-      // headers: {
-      //   authorization: 'B619A928-B3D8-4138-BDD4-B1C0CC6408C7',
-      //   Accept: 'application/json'
-      // }
-    // };
-              // "Access-Control-Allow-Origin": "*"
-           // "cache-control": "no-cache",
-        // "postman-token": "6f542f13-6d93-a6db-26c0-727dce301262"
 
     // when call is complete, declare all the variables as data from the api
     $.ajax(url)
@@ -70,7 +53,6 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
       hours = data.data[i].operatingHours[0].description;
 
       // run dom manipulation for all variables
-      // manipulateDom(park_name, coordinates, website, description, weather, directions);
       manipulateDom(park_name, address, city, park_state, coordinates, image, website, description, weather, directions, hours);
        let container = document.querySelectorAll('.resultCont');
       // parse out the coordinates from the coordinates string using regex
@@ -185,12 +167,6 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
     //wrap the link in a working link tag
     parkWebsite.wrap('<a href="'+ website +'"></a>');
 
-    // // create a save button
-    // let saveResult = $('<button>').attr({class: 'saveButton', type: 'submit'}).html('SAVE THIS PARK');
-    // // append the save button to the container
-    // $container.append(saveResult);
-
-
     let saveInput = $('<input>').attr({type:'hidden', value:'<%= markers.park_name %>', class:'saveButton'})
     let saveResult = $('<button>').attr({class:'saveButton'}).html('SAVE THIS PARK')
     .on('click', function(){
@@ -211,63 +187,33 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
       }
 
       const URL = '/explore/new';
-
       $.post(URL, park, function(data, status){
         console.log(data)
         console.log(status)
       })
-
-
     })
 
     $container.append(saveResult);
     $container.append(saveInput);
-    // $container.append(wrappedForm);
-
-    // TO SAVE TO DB
-    // <form action="" method="POST">
-    // <input type="hidden" value="<%= markers.park_name %>" />
-    // <button type="submit">Save</button>
-    // </form>
 
     // append the container to the search results
     wrappedDiv.append($container);
     $('#searchResults').append(wrappedDiv);
-
-    // let saveThisPark = document.querySelectorAll('.saveButton');
-    //   saveThisPark.forEach(element => {
-    //     element.addEventListener('click', function(){
-    //       console.log(this)
-    //     })
-    //   })
-
   };
-
-
-
-
-
-
 
   let searchButton = document.querySelector('#btnSearch');
   //add event listener to the submit button and call Api function
   searchButton.addEventListener('click', callNps);
 
   function addMarkerFromApi(cor) {
-
-    // console.log('inside add marker from api')
     let lat = cor.lat;
     let lng = cor.lng
     var position = new google.maps.LatLng(lat, lng);
-    // console.log('position lat -->', lat)
-    // console.log('position lng -->', lng)
-    // console.log(position);
     var googleMarker = new google.maps.Marker({
       position: position,
       title: park_name,
       map: map
     });
-    // console.log(googleMarker);
 
    // Bind a popup to the marker
     googleMarker.addListener('click', function addPopup() {
@@ -278,10 +224,8 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
     });
   };
 
-
   // RENDER MAP
   function initSearchMap() {
-    // event.preventDefault();
     // Listen for click on map
     google.maps.event.addListener(map, 'click', function(event){
       // add marker
@@ -305,8 +249,9 @@ var map = new google.maps.Map(document.getElementById('searchMap'), options);
       };
     };
   };
-// initialize the map
-initSearchMap();
+
+  // initialize the map
+  initSearchMap();
 
 });
 

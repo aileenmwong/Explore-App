@@ -4,57 +4,24 @@ const markerController = {};
 
 //render all of the data from the db
 markerController.index = (req, res) => {
-  console.log('inside markerController')
   Marker.findAll()
-    // .then(markers => {
-    // res.json({
-    //   message: 'ok',
-    //   data: markers,
-    // })
     .then(markers => {
-      // console.log(markers);
       res.render('./explore-map', {
         data: markers,
       })
     }).catch(err => {
-      // console.log(err);
       res.status(500).json(err);
     });
 };
 
-// markerController.home = (req, res) => {
-//   console.log('inside markerController')
-//   Marker.findAll()
-//     // .then(markers => {
-//     // res.json({
-//     //   message: 'ok',
-//     //   data: markers,
-//     // })
-//     .then(markers => {
-//       console.log(markers);
-//       res.render('./explore-home', {
-//         data: markers,
-//       })
-//     }).catch(err => {
-//       console.log(err);
-//       res.status(500).json(err);
-//     });
-// };
-
 //renders the data from a single item in the db
 markerController.show = (req, res) => {
   Marker.findById(req.params.id)
-    // .then(marker => {
-    // res.json({
-    //   message: 'ok',
-    //   data: marker,
-    // });
     .then(marker => {
       res.render('./explore-single', {
         data: marker,
       });
     }).catch(err => {
-      // console.log(err);
       res.status(500).json(err);
     });
 }
@@ -86,7 +53,6 @@ markerController.create = (req, res) => {
       res.redirect('/explore');
       })
     .catch (err => {
-      console.log(err);
       res.status(500).json(err);
     });
   };
@@ -110,7 +76,6 @@ markerController.delete = (req, res) => {
     res.redirect('/explore');
     })
   .catch(err => {
-    // console.log(err);
     res.status(500).json(err);
   });
 };
